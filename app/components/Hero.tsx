@@ -13,7 +13,7 @@ const BrandTile = ({ src, className = "" }: { src: string, className?: string })
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-[#FEF4E8] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-10" dir="rtl">
+    <section className="relative w-full h-screen bg-[#ffefd0] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-10" dir="rtl">
       
       {/* Decorative Borders */}
       <div className="absolute top-0 left-0 right-0 flex w-full justify-between pointer-events-none z-0 opacity-90 md:opacity-100">
@@ -113,7 +113,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               href="#"
-              className="bg-[#FEF4E8]/80 backdrop-blur-sm text-[#1D7671] border-2 border-[#1D7671] px-8 py-3 rounded-2xl text-lg font-bold hover:shadow-[0_10px_20px_rgba(29,118,113,0.15)] hover:bg-[#1D7671] hover:text-white transition-all shadow-lg text-center"
+              className="bg-[#ffefd0]/80 backdrop-blur-sm text-[#1D7671] border-2 border-[#1D7671] px-8 py-3 rounded-2xl text-lg font-bold hover:shadow-[0_10px_20px_rgba(29,118,113,0.15)] hover:bg-[#1D7671] hover:text-white transition-all shadow-lg text-center"
             >
               اكتشف المزيد
             </motion.a>
