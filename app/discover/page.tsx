@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { Users, Calendar, MapPin, Smartphone, ChevronRight, ArrowUpLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
+import SiteBackground from "../components/SiteBackground";
 
 export default function ClubDetailsPage() {
   return (
-    <div className="min-h-screen bg-[#ffefd0] font-sans pb-32 relative overflow-hidden" dir="rtl">
+    <SiteBackground className="font-sans pb-32" dir="rtl">
       
-
-
       <div className="max-w-6xl mx-auto px-6 relative z-10 pt-10">
         
         {/* Navigation */}
@@ -90,13 +89,25 @@ export default function ClubDetailsPage() {
           {/* Target Audience */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:col-span-2 lg:col-span-2 bg-[#0068a1] rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_40px_rgba(0,104,161,0.2)] flex flex-col justify-between relative overflow-hidden group"
           >
-            <div className="absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-right group-hover:scale-110 transition-transform duration-700">
+            {/* Desktop Art (Hover) */}
+            <div className="hidden md:block absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-right group-hover:scale-110 transition-transform duration-700">
                <img src="/svg/art-02-br.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
             </div>
+            {/* Mobile Art (Scroll) */}
+            <motion.div 
+              initial={{ scale: 1.5 }}
+              whileInView={{ scale: 1.1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ margin: "-50px", once: false }}
+              className="md:hidden absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none origin-bottom-right"
+            >
+               <img src="/svg/art-02-br.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
+            </motion.div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#83e6d6]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-10 backdrop-blur-md border border-white/10">
@@ -113,13 +124,25 @@ export default function ClubDetailsPage() {
           {/* Duration */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="md:col-span-1 lg:col-span-2 bg-[#83e6d6] rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_40px_rgba(131,230,214,0.3)] flex flex-col justify-between relative overflow-hidden group"
           >
-            <div className="absolute bottom-0 left-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-left group-hover:scale-110 transition-transform duration-700">
+            {/* Desktop Art (Hover) */}
+            <div className="hidden md:block absolute bottom-0 left-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-left group-hover:scale-110 transition-transform duration-700">
                <img src="/svg/art-02-bl.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
             </div>
+            {/* Mobile Art (Scroll) */}
+            <motion.div 
+              initial={{ scale: 1.5 }}
+              whileInView={{ scale: 1.1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ margin: "-50px", once: false }}
+              className="md:hidden absolute bottom-0 left-0 w-full h-full opacity-10 pointer-events-none origin-bottom-left"
+            >
+               <img src="/svg/art-02-bl.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
+            </motion.div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-white/40 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#1D7671]/10 text-[#1D7671] flex items-center justify-center mb-10 backdrop-blur-md border border-[#1D7671]/10">
@@ -137,13 +160,25 @@ export default function ClubDetailsPage() {
           {/* Location */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="md:col-span-2 lg:col-span-2 bg-[#1D7671] rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_40px_rgba(29,118,113,0.2)] flex flex-col justify-between relative overflow-hidden group"
           >
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-top-left group-hover:scale-110 transition-transform duration-700">
+            {/* Desktop Art (Hover) */}
+            <div className="hidden md:block absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-top-left group-hover:scale-110 transition-transform duration-700">
                <img src="/svg/art-03-tl.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
             </div>
+            {/* Mobile Art (Scroll) */}
+            <motion.div 
+              initial={{ scale: 1.5 }}
+              whileInView={{ scale: 1.1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ margin: "-50px", once: false }}
+              className="md:hidden absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none origin-top-left"
+            >
+               <img src="/svg/art-03-tl.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
+            </motion.div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#83e6d6]/20 rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/10 text-[#83e6d6] flex items-center justify-center mb-10 backdrop-blur-md border border-white/10">
@@ -162,14 +197,26 @@ export default function ClubDetailsPage() {
           <motion.a 
             href="https://wa.me/966533052433" target="_blank" rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="md:col-span-1 lg:col-span-2 bg-gradient-to-br from-[#ff9f9d] to-[#fd5c3d] rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_40px_rgba(253,92,61,0.25)] flex flex-col justify-between relative overflow-hidden text-white group block cursor-pointer"
           >
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-white/20 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-right group-hover:scale-110 transition-transform duration-700">
+            {/* Desktop Art (Hover) */}
+            <div className="hidden md:block absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none scale-150 origin-bottom-right group-hover:scale-110 transition-transform duration-700">
                <img src="/svg/art-03-br.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
             </div>
+            {/* Mobile Art (Scroll) */}
+            <motion.div 
+              initial={{ scale: 1.5 }}
+              whileInView={{ scale: 1.1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ margin: "-50px", once: false }}
+              className="md:hidden absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none origin-bottom-right"
+            >
+               <img src="/svg/art-03-br.svg" className="w-full h-full object-cover mix-blend-overlay" alt="" />
+            </motion.div>
             
             <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-10 backdrop-blur-md border border-white/20">
               <Smartphone className="w-8 h-8" />
@@ -184,6 +231,6 @@ export default function ClubDetailsPage() {
 
         </div>
       </div>
-    </div>
+    </SiteBackground>
   );
 }
