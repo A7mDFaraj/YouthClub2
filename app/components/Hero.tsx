@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 const SaudiMap = dynamic(() => import('./SaudiMap'), { ssr: false });
 
 const BrandTile = ({ src, className = "" }: { src: string, className?: string }) => (
-  <div className={`w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center shrink-0 shadow-lg ${className}`}>
+  <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center shrink-0 shadow-lg ${className}`}>
     <img src={src} className="w-full h-full object-cover" alt="Brand Art" />
   </div>
 );
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-[#ffefd0] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-10" dir="rtl">
+    <section className="relative w-full min-h-[100dvh] bg-[#ffefd0] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-10" dir="rtl">
       
       {/* Decorative Borders */}
       <div className="absolute top-0 left-0 right-0 flex w-full justify-between pointer-events-none z-0 opacity-90 md:opacity-100">
@@ -28,35 +28,39 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute top-16 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute top-12 sm:top-16 lg:top-20 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-02-tl.svg" />
         <BrandTile src="/svg/art-01-br.svg" />
       </div>
 
-      <div className="absolute top-16 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute top-12 sm:top-16 lg:top-20 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-03-bl.svg" />
         <BrandTile src="/svg/art-01-bl.svg" />
       </div>
 
-      <div className="absolute bottom-20 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-02-tl.svg" />
         <BrandTile src="/svg/art-02-tr.svg" />
       </div>
 
-      <div className="absolute bottom-20 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-01-tl.svg" />
         <BrandTile src="/svg/art-03-tl.svg" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center justify-between gap-4 px-6 h-full">
+      <div className="relative z-10 w-full flex-1 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:justify-between gap-8 lg:gap-4 px-6 py-4 lg:py-0 mt-8 lg:mt-0">
         
         {/* Interactive Saudi Map (Replaces old 3D Map) */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full lg:w-[55%] flex justify-center lg:justify-end z-20 max-h-[50vh] lg:max-h-[70vh]"
+          initial={{ opacity: 0, y: "-15vh", scale: 1.1 }}
+          animate={{ opacity: 1, y: ["-15vh", "-15vh", "0vh"], scale: [1.1, 1.1, 1] }}
+          transition={{ 
+            opacity: { duration: 0.8 },
+            y: { duration: 2.5, times: [0, 0.6, 1], ease: "easeInOut" },
+            scale: { duration: 2.5, times: [0, 0.6, 1], ease: "easeInOut" }
+          }}
+          className="w-full lg:w-[55%] flex justify-center lg:justify-end z-20 max-h-[35vh] sm:max-h-[45vh] lg:max-h-[70vh] mt-4 lg:mt-0"
         >
           <SaudiMap />
         </motion.div>
@@ -78,18 +82,18 @@ export default function Hero() {
              <motion.div
                initial={{ scale: 0.8, opacity: 0 }}
                animate={{ scale: 1, opacity: 1 }}
-               transition={{ type: "spring", stiffness: 200, damping: 15 }}
+               transition={{ type: "spring", stiffness: 200, damping: 15, delay: 2.0 }}
              >
-               <img src="/svg/Logo_cropped.svg" alt="Logo" className="w-[240px] sm:w-[320px] lg:w-[420px] object-contain drop-shadow-2xl" />
+               <img src="/svg/Logo_cropped.svg" alt="Logo" className="w-[280px] sm:w-[320px] lg:w-[420px] object-contain drop-shadow-2xl" />
              </motion.div>
           </motion.div>
 
           {/* Text perfectly centered with the logo with its own entrance animation */}
           <motion.p 
-            className="text-[#1D7671] text-xl sm:text-2xl md:text-3xl font-extrabold mt-2 mb-8 leading-[1.6] drop-shadow-sm max-w-[90%]"
+            className="text-[#1D7671] text-lg sm:text-2xl md:text-3xl font-extrabold -mt-2 lg:-mt-6 mb-6 lg:mb-8 leading-[1.6] drop-shadow-sm max-w-[90%]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
           >
             وجهتك الأولى للإبداع، الابتكار،<br/>واكتشاف الذات في بيئة شبابية متكاملة
           </motion.p>
@@ -99,7 +103,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 2.4 }}
           >
             <motion.a
               whileHover={{ scale: 1.05, y: -4 }}
@@ -122,7 +126,7 @@ export default function Hero() {
       </div>
 
       {/* Animated Bottom Waves (Glassmorphism) */}
-      <div className="absolute bottom-0 left-0 w-full h-12 sm:h-16 md:h-20 lg:h-24 z-10 pointer-events-none overflow-hidden">
+      <div className="absolute bottom-0 left-0 w-full h-8 sm:h-10 md:h-12 lg:h-16 z-10 pointer-events-none overflow-hidden">
         
         {/* Back Wave (Light Teal Glass) */}
         <motion.div 
@@ -133,7 +137,7 @@ export default function Hero() {
           {[...Array(8)].map((_, i) => (
             <div 
               key={`back-${i}`}
-              className="h-full aspect-[421.1/43.11] bg-[#83e6d6]/30 backdrop-blur-sm"
+              className="h-full aspect-[421.1/43.11] bg-[#83e6d6]/30 backdrop-blur-sm -mx-[1px] shrink-0"
               style={{ 
                 WebkitMaskImage: "url('/svg/wave-line-teal.svg')", 
                 maskImage: "url('/svg/wave-line-teal.svg')", 
@@ -153,7 +157,7 @@ export default function Hero() {
           {[...Array(8)].map((_, i) => (
             <div 
               key={`front-${i}`}
-              className="h-full aspect-[421.1/43.11] bg-[#0068a1]/30 backdrop-blur-md"
+              className="h-full aspect-[421.1/43.11] bg-[#0068a1]/30 backdrop-blur-md -mx-[1px] shrink-0"
               style={{ 
                 WebkitMaskImage: "url('/svg/wave-line-blue.svg')", 
                 maskImage: "url('/svg/wave-line-blue.svg')", 
