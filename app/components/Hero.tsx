@@ -116,7 +116,7 @@ export default function Hero() {
             <motion.a
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              href="#"
+              href="/discover"
               className="bg-[#ffefd0]/80 backdrop-blur-sm text-[#1D7671] border-2 border-[#1D7671] px-8 py-3 rounded-2xl text-lg font-bold hover:shadow-[0_10px_20px_rgba(29,118,113,0.15)] hover:bg-[#1D7671] hover:text-white transition-all shadow-lg text-center"
             >
               اكتشف المزيد
