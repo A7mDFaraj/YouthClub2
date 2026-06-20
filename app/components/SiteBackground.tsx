@@ -38,7 +38,7 @@ export default function SiteBackground({
   className = "", 
   dir = "ltr" 
 }: { 
-  children: React.ReactNode, 
+  children?: React.ReactNode, 
   className?: string, 
   dir?: string 
 }) {
