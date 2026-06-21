@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-thmanyahsans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-thmanyah: var(--font-thmanyahsans);
+  --font-thmanyah: var(--font-thmanyahsans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,5 +24,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-thmanyahsans), Arial, Helvetica, sans-serif;
+}
+
+/* Ensure ALL elements inherit ThamanySans - prevents Tailwind preflight from resetting font on buttons, inputs, etc. */
+*,
+*::before,
+*::after {
+  font-family: inherit;
 }
 

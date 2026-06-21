@@ -42,6 +42,7 @@ const thmanyahSans = localFont({
     },
   ],
   variable: "--font-thmanyahsans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

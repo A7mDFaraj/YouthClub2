@@ -34,12 +34,14 @@ export default function SiteBackground({
   children, 
   className = "", 
   dir = "ltr",
-  waveColor
+  waveColor,
+  style
 }: { 
   children?: React.ReactNode, 
   className?: string, 
   dir?: string,
-  waveColor?: string
+  waveColor?: string,
+  style?: React.CSSProperties
 }) {
   const colors = {
     bg: PAGE_BG,
@@ -60,7 +62,7 @@ export default function SiteBackground({
   const bgUrl = `url("data:image/svg+xml,${encodeURIComponent(waveSvg.trim())}")`;
 
   return (
-    <div className={`relative min-h-screen w-full overflow-hidden ${className}`} style={{ backgroundColor: colors.bg }} dir={dir}>
+    <div className={`relative min-h-screen w-full overflow-hidden ${className}`} style={{ backgroundColor: colors.bg, ...style }} dir={dir}>
       
       {/* Ambient Breathing Glows */}
       <div className="absolute top-[20%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#e06b52]/20 rounded-full blur-[100px] pointer-events-none z-0 animate-pulse" style={{ animationDuration: '8s' }} />
