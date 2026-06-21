@@ -33,11 +33,13 @@ const SunburstSquare = ({ bgColor, linesColor = PAGE_BG, origin = "tl", classNam
 export default function SiteBackground({ 
   children, 
   className = "", 
-  dir = "ltr" 
+  dir = "ltr",
+  waveColor
 }: { 
   children?: React.ReactNode, 
   className?: string, 
-  dir?: string 
+  dir?: string,
+  waveColor?: string
 }) {
   const colors = {
     bg: PAGE_BG,
@@ -45,7 +47,7 @@ export default function SiteBackground({
     topRight: '#1C81AC',    // Primary Light Blue
     bottomLeft: '#e06b52',  // Secondary Orange
     bottomRight: '#31a39f', // Secondary Teal
-    wave: '#1C81AC',        // Primary Light Blue for waves
+    wave: waveColor || '#1C81AC',        // Primary Light Blue for waves
   };
 
   const waveSvg = `
@@ -73,7 +75,6 @@ export default function SiteBackground({
         <div className="col-span-2 row-span-2"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="45s" animDirection="normal" /></div>
         <div className="col-start-3 row-start-1"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="55s" animDirection="reverse" /></div>
         <div className="col-start-1 row-start-3"><SunburstSquare bgColor={colors.bottomLeft} origin="bl" animDuration="38s" animDirection="reverse" /></div>
-        <div className="col-start-2 row-start-3"><SunburstSquare bgColor={colors.bottomRight} origin="br" animDuration="60s" animDirection="normal" /></div>
       </div>
 
       {/* Top Right Pattern Grid */}
@@ -81,8 +82,7 @@ export default function SiteBackground({
         className="absolute top-0 right-0 w-[120px] h-[120px] md:w-[200px] md:h-[200px] grid grid-cols-2 grid-rows-2 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 md:opacity-90 transition-opacity"
         dir="ltr"
       >
-        <div className="col-start-2 row-start-1"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="42s" animDirection="normal" /></div>
-        <div className="col-span-2 row-start-2"><SunburstSquare bgColor={colors.bottomRight} origin="br" animDuration="50s" animDirection="reverse" /></div>
+        <div className="col-span-2 row-start-1"><SunburstSquare bgColor={colors.bottomRight} origin="br" animDuration="50s" animDirection="reverse" /></div>
       </div>
 
       {/* Left Edge Accent */}
@@ -91,7 +91,7 @@ export default function SiteBackground({
       </div>
 
       {/* Right Edge Accent */}
-      <div className="absolute top-[40%] right-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-80" dir="ltr">
+      <div className="absolute top-[52%] right-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-80" dir="ltr">
          <SunburstSquare bgColor={colors.topRight} origin="tr" className="rounded-l-full" animDuration="52s" animDirection="reverse" />
       </div>
 

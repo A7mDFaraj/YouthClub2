@@ -7,7 +7,7 @@ import SiteBackground from "../components/SiteBackground";
 
 export default function ClubDetailsPage() {
   return (
-    <SiteBackground className="font-sans pb-32" dir="rtl">
+    <SiteBackground className="font-sans pb-32" dir="rtl" waveColor="#82C1B9">
       
       <div className="max-w-6xl mx-auto px-6 relative z-10 pt-10">
         
