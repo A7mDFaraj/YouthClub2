@@ -72,9 +72,9 @@ export default function SiteBackground({
         className="absolute top-0 left-0 w-[240px] h-[240px] md:w-[400px] md:h-[400px] grid grid-cols-3 grid-rows-3 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 md:opacity-100 transition-opacity"
         dir="ltr"
       >
-        <div className="col-span-2 row-span-2"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="45s" animDirection="normal" /></div>
-        <div className="col-start-3 row-start-1"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="55s" animDirection="reverse" /></div>
-        <div className="col-start-1 row-start-3"><SunburstSquare bgColor={colors.bottomLeft} origin="bl" animDuration="38s" animDirection="reverse" /></div>
+        <div className="col-span-2 row-span-2 scale-[0.8] origin-top-left"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="45s" animDirection="normal" /></div>
+        <div className="col-start-3 row-start-1 scale-[0.8] origin-top-left -translate-x-[40%]"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="55s" animDirection="reverse" /></div>
+        <div className="col-start-1 row-start-3 scale-[0.8] origin-top-left -translate-y-[40%]"><SunburstSquare bgColor={colors.bottomLeft} origin="bl" animDuration="38s" animDirection="reverse" /></div>
       </div>
 
       {/* Top Right Pattern Grid */}
