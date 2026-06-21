@@ -167,7 +167,7 @@ export default function Hero() {
           {[...Array(8)].map((_, i) => (
             <div 
               key={`back-${i}`}
-              className="relative h-full bg-[#83e6d6]/30 backdrop-blur-sm -mx-[1px] shrink-0"
+              className="h-full aspect-[421.1/43.11] bg-[#83e6d6]/30 backdrop-blur-sm -mx-[1px] shrink-0"
               style={{ 
                 WebkitMaskImage: "url('/svg/wave-line-teal.svg')", 
                 maskImage: "url('/svg/wave-line-teal.svg')", 
@@ -177,9 +177,7 @@ export default function Hero() {
                 maskRepeat: 'no-repeat',
                 transform: 'translateZ(0)'
               }} 
-            >
-              <img src="/svg/wave-line-teal.svg" alt="" className="block h-full w-auto opacity-0 pointer-events-none select-none" />
-            </div>
+            />
           ))}
         </motion.div>
         
@@ -192,7 +190,7 @@ export default function Hero() {
           {[...Array(8)].map((_, i) => (
             <div 
               key={`front-${i}`}
-              className="relative h-full bg-[#0068a1]/30 backdrop-blur-md -mx-[1px] shrink-0"
+              className="h-full aspect-[421.1/43.11] bg-[#0068a1]/30 backdrop-blur-md -mx-[1px] shrink-0"
               style={{ 
                 WebkitMaskImage: "url('/svg/wave-line-blue.svg')", 
                 maskImage: "url('/svg/wave-line-blue.svg')", 
@@ -202,9 +200,7 @@ export default function Hero() {
                 maskRepeat: 'no-repeat',
                 transform: 'translateZ(0)'
               }} 
-            >
-              <img src="/svg/wave-line-blue.svg" alt="" className="block h-full w-auto opacity-0 pointer-events-none select-none" />
-            </div>
+            />
           ))}
         </motion.div>
       </div>
