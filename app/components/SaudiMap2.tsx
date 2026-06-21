@@ -1,10 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import saudiMap from "@svg-maps/saudi-arabia";
 
-const REGION_COLORS: Record<string, string> = {};
+const REGION_COLORS: Record<string, string> = {
+  "ryiadh": "#F2C14E", // Yellow
+  "eastern-province": "#e06b52", // Orange
+  "mecca": "#31a39f", // Teal
+  "medina": "#1C81AC", // Light Blue
+  "hail": "#e06b52", // Orange
+  "al-qassim": "#31a39f", // Teal
+  "northern-borders": "#1C81AC", // Light Blue
+  "al-jawf": "#31a39f", // Teal
+  "tabuk": "#F2C14E", // Yellow
+  "asir": "#1C81AC", // Light Blue
+  "al-bahah": "#e06b52", // Orange
+  "jizan": "#F2C14E", // Yellow
+  "najran": "#31a39f" // Teal
+};
 
 const REGION_NAMES_AR: Record<string, string> = {
   "tabuk": "تبوك",
@@ -22,60 +36,18 @@ const REGION_NAMES_AR: Record<string, string> = {
   "eastern-province": "المنطقة الشرقية"
 };
 
-// Carefully calibrated coordinates for actual major cities to avoid borders
-const PATTERN_1 = [
-  { id: "p1-riyadh", cx: 380, cy: 300, color: "#ffffff" }, // Riyadh
-  { id: "p1-mecca", cx: 210, cy: 360, color: "#ffffff" },  // Mecca
-  { id: "p1-dammam", cx: 540, cy: 260, color: "#ffffff" }, // Dammam
-  { id: "p1-tabuk", cx: 150, cy: 120, color: "#ffffff" },  // Tabuk
+const VIBRATING_POINTS = [
+  // Approximate x,y coordinates relative to viewBox '0 0 730 600'
+  // I will need to calibrate these!
+  { id: "point-tabuk", cx: 160, cy: 120, color: "#ffffff" },
+  { id: "point-hail", cx: 270, cy: 180, color: "#ffffff" },
+  { id: "point-ryiadh", cx: 380, cy: 300, color: "#ffffff" },
+  { id: "point-eastern", cx: 550, cy: 330, color: "#ffffff" },
 ];
 
-const PATTERN_2 = [
-  { id: "p2-riyadh", cx: 380, cy: 300, color: "#ffffff" }, // Riyadh
-  { id: "p2-medina", cx: 190, cy: 270, color: "#ffffff" }, // Medina
-  { id: "p2-abha", cx: 280, cy: 470, color: "#ffffff" },   // Abha
-  { id: "p2-hail", cx: 270, cy: 180, color: "#ffffff" },   // Hail
-];
-
-const PATTERN_3 = [
-  { id: "p3-riyadh", cx: 380, cy: 300, color: "#ffffff" }, // Riyadh
-  { id: "p3-jawf", cx: 210, cy: 100, color: "#ffffff" },   // Al Jawf
-  { id: "p3-najran", cx: 360, cy: 500, color: "#ffffff" }, // Najran
-  { id: "p3-qassim", cx: 320, cy: 230, color: "#ffffff" }, // Al Qassim
-];
-const PATTERN_MAIN = [
-  { id: "pmain-riyadh", cx: 380, cy: 300, color: "#ffffff" }, // Riyadh
-  { id: "pmain-tabuk", cx: 160, cy: 120, color: "#ffffff" },  // Tabuk
-  { id: "pmain-hail", cx: 270, cy: 180, color: "#ffffff" },   // Hail
-  { id: "pmain-eastern", cx: 550, cy: 330, color: "#ffffff" },// Eastern
-];
-
-const ALL_PATTERNS = [PATTERN_MAIN, PATTERN_1, PATTERN_2, PATTERN_3];
-
-export default function SaudiMap() {
+export default function SaudiMap2() {
   const [hoveredRegionId, setHoveredRegionId] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const [patternIndex, setPatternIndex] = useState(0);
-
-  React.useEffect(() => {
-    let timeoutId: any;
-    const nextPattern = () => {
-      setPatternIndex((prev) => {
-        const next = (prev + 1) % ALL_PATTERNS.length;
-        // Main pattern (index 0) shows for 8 seconds, others show for 3 seconds
-        const duration = next === 0 ? 8000 : 3000; 
-        timeoutId = setTimeout(nextPattern, duration);
-        return next;
-      });
-    };
-    
-    // Initial wait for the first pattern is 8 seconds
-    timeoutId = setTimeout(nextPattern, 8000);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  const activePoints = ALL_PATTERNS[patternIndex];
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -106,42 +78,34 @@ export default function SaudiMap() {
                 id={region.id}
                 name={region.name}
                 d={region.path}
-                fill="#1C81AC"
-                stroke="#1C81AC"
+                fill={REGION_COLORS[region.id] || "#1C81AC"}
+                stroke="#ffefd0"
                 strokeWidth={1.5}
                 initial={{ 
                   scale: 0.8, 
                   x: randomX, 
                   y: randomY, 
                   rotate: randomRotate, 
-                  opacity: 0,
-                  fillOpacity: 0.15
+                  opacity: 0 
                 }}
                 animate={{ 
                   scale: 1, 
                   x: 0, 
                   y: 0, 
                   rotate: 0, 
-                  opacity: 1,
-                  fillOpacity: [0.15, 0.35, 0.15]
+                  opacity: 1 
                 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 40, 
                   damping: 12, 
                   mass: 1.5,
-                  delay: index * 0.08,
-                  fillOpacity: {
-                    repeat: Infinity,
-                    duration: 4,
-                    ease: "easeInOut",
-                    delay: 2 + (index * 0.1) // Creates a sweeping wave effect
-                  }
+                  delay: index * 0.08 // Stagger the pieces flying in
                 }}
                 whileHover={{ 
                   scale: 1.04, 
                   y: -6, 
-                  fillOpacity: 0.8,
+                  filter: "brightness(1.1) drop-shadow(0 15px 20px rgba(0,0,0,0.3))",
                   zIndex: 50
                 }}
                 onMouseEnter={() => setHoveredRegionId(region.id)}
@@ -158,15 +122,8 @@ export default function SaudiMap() {
         )}
         
         {/* Vibrating Points */}
-        <AnimatePresence>
-          {activePoints.map((point) => (
-            <motion.g 
-              key={point.id} 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-            >
+        {VIBRATING_POINTS.map((point) => (
+          <g key={point.id}>
             {/* Outer Ripple */}
             <motion.circle
               cx={point.cx}
@@ -175,16 +132,15 @@ export default function SaudiMap() {
               fill="none"
               stroke={point.color}
               strokeWidth={3}
-              initial={{ r: 8, opacity: 0.8 }}
-              animate={{ r: 24, opacity: 0 }}
+              initial={{ scale: 1, opacity: 0.8 }}
+              animate={{ scale: 3, opacity: 0 }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeOut" }}
             />
             {/* Inner Dot */}
             <circle cx={point.cx} cy={point.cy} r={6} fill={point.color} />
             <circle cx={point.cx} cy={point.cy} r={10} fill="none" stroke={point.color} strokeWidth={2} opacity={0.5} />
-            </motion.g>
-          ))}
-        </AnimatePresence>
+          </g>
+        ))}
       </svg>
       
       {/* Dynamic Cursor Tooltip */}

@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 
-const SaudiMap = dynamic(() => import('./SaudiMap'), { ssr: false });
+const SaudiMap2 = dynamic(() => import('./SaudiMap2'), { ssr: false });
 
 const BrandTile = ({ src, className = "" }: { src: string, className?: string }) => (
   <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center shrink-0 shadow-lg ${className}`}>
@@ -11,41 +11,12 @@ const BrandTile = ({ src, className = "" }: { src: string, className?: string })
   </div>
 );
 
-export default function Hero() {
+export default function Hero2() {
   return (
-    <section className="relative w-full min-h-[100dvh] bg-[#ffefd0] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-[100px] sm:pt-[120px] lg:pt-[140px]" dir="rtl">
-      {/* Placeholder for future Navbar matching map.scy.org.sa sizes */}
-      <div className="absolute top-0 left-0 w-full h-[52px] sm:h-[64px] lg:h-[72px] bg-[#ffefd0]/40 backdrop-blur-md z-[100] border-b border-white/30 shadow-sm">
-        <div className="relative mx-auto flex items-center justify-between h-full px-4 sm:px-10 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
-          {/* Logo Placeholder */}
-          <div className="h-7 sm:h-8 lg:h-10 w-24 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-
-          {/* Desktop Links */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="h-4 w-16 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-            <div className="h-4 w-24 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-            <div className="h-4 w-24 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-            <div className="h-4 w-16 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-          </nav>
-
-          {/* Right Side (Desktop Action / Mobile Hamburger) */}
-          <div className="flex items-center gap-4">
-            {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center gap-4">
-              <div className="h-4 w-16 bg-[#1C81AC]/20 rounded animate-pulse"></div>
-              <div className="h-10 w-24 rounded-full bg-[#1C81AC]/20 animate-pulse"></div>
-            </div>
-            
-            {/* Mobile Hamburger Menu */}
-            <button className="lg:hidden inline-flex items-center justify-center size-10 sm:size-11 rounded-2xl bg-[#1C81AC]/10 ring-1 ring-[#1C81AC]/20 text-[#1C81AC]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5 sm:h-6 sm:w-6"><path d="M4 5h16M4 12h16M4 19h16" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
+    <section className="relative w-full min-h-[100dvh] bg-[#ffefd0] flex flex-col items-center justify-center overflow-hidden font-sans pb-16 pt-10" dir="rtl">
+      
       {/* Decorative Borders */}
-      <div className="absolute top-[52px] sm:top-[64px] lg:top-[72px] left-0 right-0 flex w-full justify-between pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute top-0 left-0 right-0 flex w-full justify-between pointer-events-none z-0 opacity-90 md:opacity-100">
         <div className="flex">
           <BrandTile src="/svg/art-01-tl.svg" />
           <BrandTile src="/svg/art-01-tr.svg" />
@@ -57,25 +28,24 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute top-[100px] sm:top-[128px] lg:top-[152px] left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute top-12 sm:top-16 lg:top-20 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-02-tl.svg" />
         <BrandTile src="/svg/art-01-br.svg" />
       </div>
 
-      <div className="absolute top-[100px] sm:top-[128px] lg:top-[152px] right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+      <div className="absolute top-12 sm:top-16 lg:top-20 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-03-bl.svg" />
         <BrandTile src="/svg/art-01-bl.svg" />
       </div>
 
-      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-0 flex flex-col pointer-events-none z-0 opacity-40 sm:opacity-90 md:opacity-100">
-        {/* Sun is hidden for asymmetrical effect */}
-        {/* <BrandTile src="/svg/art-02-tl.svg" /> */}
-        <BrandTile src="/svg/art-03-tl.svg" />
+      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
+        <BrandTile src="/svg/art-02-tl.svg" />
+        <BrandTile src="/svg/art-02-tr.svg" />
       </div>
 
-      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 right-0 flex flex-col pointer-events-none z-0 opacity-40 sm:opacity-90 md:opacity-100">
+      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
         <BrandTile src="/svg/art-01-tl.svg" />
-        <BrandTile src="/svg/art-03-tl-yellow.svg" />
+        <BrandTile src="/svg/art-03-tl.svg" />
       </div>
 
       {/* Main Content */}
@@ -90,9 +60,9 @@ export default function Hero() {
             y: { duration: 2.5, times: [0, 0.6, 1], ease: "easeInOut" },
             scale: { duration: 2.5, times: [0, 0.6, 1], ease: "easeInOut" }
           }}
-          className="w-full lg:w-[55%] flex justify-center lg:justify-end z-20 max-h-[35vh] sm:max-h-[45vh] lg:max-h-[70vh] mt-4 lg:mt-0 mb-12 sm:mb-0"
+          className="w-full lg:w-[55%] flex justify-center lg:justify-end z-20 max-h-[35vh] sm:max-h-[45vh] lg:max-h-[70vh] mt-4 lg:mt-0"
         >
-          <SaudiMap />
+          <SaudiMap2 />
         </motion.div>
 
         {/* Text & Logo Area */}
@@ -100,7 +70,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full lg:w-[45%] flex flex-col items-center justify-center text-center z-20 -mt-6 sm:-mt-10 lg:-mt-40"
+          className="w-full lg:w-[45%] flex flex-col items-center justify-center text-center z-20"
         >
           {/* Logo with Infinite Floating Animation */}
           <motion.div 
