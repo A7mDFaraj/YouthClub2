@@ -73,45 +73,54 @@ export default function SaudiMap2() {
             const randomRotate = (Math.sin(index * 19) * 45);
 
             return (
-              <motion.path
+              <motion.g
                 key={region.id}
                 id={region.id}
-                name={region.name}
-                d={region.path}
-                fill={REGION_COLORS[region.id] || "#1C81AC"}
-                stroke="#ffefd0"
-                strokeWidth={1.5}
-                initial={{ 
-                  scale: 0.8, 
-                  x: randomX, 
-                  y: randomY, 
-                  rotate: randomRotate, 
-                  opacity: 0 
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: "easeInOut",
+                  delay: 2 + (index * 0.15) // Sweeping vertical breathing after assembly
                 }}
-                animate={{ 
-                  scale: 1, 
-                  x: 0, 
-                  y: 0, 
-                  rotate: 0, 
-                  opacity: 1 
-                }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 40, 
-                  damping: 12, 
-                  mass: 1.5,
-                  delay: index * 0.08 // Stagger the pieces flying in
-                }}
-                whileHover={{ 
-                  scale: 1.04, 
-                  y: -6, 
-                  filter: "brightness(1.1) drop-shadow(0 15px 20px rgba(0,0,0,0.3))",
-                  zIndex: 50
-                }}
-                onMouseEnter={() => setHoveredRegionId(region.id)}
-                onMouseLeave={() => setHoveredRegionId(null)}
-                className="cursor-pointer outline-none transform-origin-center"
-              />
+              >
+                <motion.path
+                  name={region.name}
+                  d={region.path}
+                  fill={REGION_COLORS[region.id] || "#1C81AC"}
+                  stroke="#ffefd0"
+                  strokeWidth={1.5}
+                  initial={{ 
+                    scale: 0.8, 
+                    x: randomX, 
+                    y: randomY, 
+                    rotate: randomRotate, 
+                    opacity: 0,
+                  }}
+                  animate={{ 
+                    scale: 1, 
+                    x: 0, 
+                    y: 0, 
+                    rotate: 0, 
+                    opacity: 1,
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 40, 
+                    damping: 12, 
+                    mass: 1.5,
+                    delay: index * 0.08 // Stagger the pieces flying in
+                  }}
+                  whileHover={{ 
+                    scale: 1.04, 
+                    y: -6, 
+                    filter: "brightness(1.1)",
+                  }}
+                  onMouseEnter={() => setHoveredRegionId(region.id)}
+                  onMouseLeave={() => setHoveredRegionId(null)}
+                  className="cursor-pointer outline-none transform-origin-center"
+                />
+              </motion.g>
             );
           })}
         </g>
