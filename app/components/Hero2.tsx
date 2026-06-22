@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 
-const SaudiMap2 = dynamic(() => import('./SaudiMap2'), { ssr: false });
+const SaudiMap = dynamic(() => import('./SaudiMap'), { ssr: false });
 
 const BrandTile = ({ src, className = "" }: { src: string, className?: string }) => (
   <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center shrink-0 shadow-lg ${className}`}>
@@ -62,7 +62,7 @@ export default function Hero2() {
           }}
           className="w-full lg:w-[55%] flex justify-center lg:justify-end z-20 max-h-[35vh] sm:max-h-[45vh] lg:max-h-[70vh] mt-4 lg:mt-0"
         >
-          <SaudiMap2 />
+          <SaudiMap />
         </motion.div>
 
         {/* Text & Logo Area */}
