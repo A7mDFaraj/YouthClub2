@@ -14,19 +14,19 @@ const data = [
         id: 'prog-1',
         title: 'برنامج جودة الحياة',
         description: 'يُعنى البرنامج بتحسين جودة حياة الفرد والأسرة من خلال تهيئة البيئة اللازمة لدعم واستحداث خيارات جديدة تعزز مشاركة المواطن والمقيم.',
-        image: '/images/quality_of_life.png',
+        image: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=1920&q=80',
       },
       {
         id: 'prog-2',
         title: 'برنامج تطوير الصناعة',
         description: 'يهدف إلى تحويل المملكة إلى قوة صناعية رائدة ومنصة لوجستية عالمية عبر أربعة قطاعات رئيسية.',
-        image: '/images/industry_dev.png',
+        image: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1920&q=80',
       },
       {
         id: 'prog-3',
         title: 'برنامج التحول الوطني',
         description: 'يهدف إلى تحقيق التميز في الأداء الحكومي وتأسيس البنية التحتية اللازمة لتحسين العيش وتعزيز التنمية المستدامة.',
-        image: '/images/national_transformation.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49b626426081?auto=format&fit=crop&w=1920&q=80',
       }
     ]
   },
@@ -39,13 +39,13 @@ const data = [
         id: 'strat-1',
         title: 'الاستراتيجية الوطنية للسياحة',
         description: 'تطوير القطاع السياحي ليكون أحد الروافد الأساسية للاقتصاد الوطني، وجذب السياح من مختلف أنحاء العالم.',
-        image: '/images/tourism_strategy.png',
+        image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
       },
       {
         id: 'strat-2',
         title: 'الاستراتيجية الوطنية للاستثمار',
         description: 'جذب الاستثمارات الأجنبية والمحلية لتعزيز النمو الاقتصادي المتنوع وخلق بيئة استثمارية جاذبة.',
-        image: '/images/investment_strategy.png',
+        image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1920&q=80',
       }
     ]
   },
@@ -58,19 +58,19 @@ const data = [
         id: 'proj-1',
         title: 'نيوم (NEOM)',
         description: 'مشروع حالم ومستقبل جديد، يركز على الابتكار والاستدامة ليصبح نموذجاً عالمياً رائداً في مختلف القطاعات.',
-        image: '/images/neom_city.png',
+        image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80',
       },
       {
         id: 'proj-2',
         title: 'مشروع البحر الأحمر',
         description: 'وجهة سياحية فاخرة ممتدة على ساحل البحر الأحمر بتنوع بيئي فريد وتجارب استثنائية.',
-        image: '/images/red_sea_project.png',
+        image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80',
       },
       {
         id: 'proj-3',
         title: 'القدية',
         description: 'عاصمة الترفيه والرياضة والفنون في المملكة العربية السعودية، وجهة ترفيهية متكاملة.',
-        image: '/images/qiddiya_entertainment.png',
+        image: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1920&q=80',
       }
     ]
   }
