@@ -14,19 +14,19 @@ const data = [
         id: 'prog-1',
         title: 'برنامج جودة الحياة',
         description: 'يُعنى البرنامج بتحسين جودة حياة الفرد والأسرة من خلال تهيئة البيئة اللازمة لدعم واستحداث خيارات جديدة تعزز مشاركة المواطن والمقيم.',
-        image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/quality_of_life.png',
       },
       {
         id: 'prog-2',
         title: 'برنامج تطوير الصناعة',
         description: 'يهدف إلى تحويل المملكة إلى قوة صناعية رائدة ومنصة لوجستية عالمية عبر أربعة قطاعات رئيسية.',
-        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/industry_dev.png',
       },
       {
         id: 'prog-3',
         title: 'برنامج التحول الوطني',
         description: 'يهدف إلى تحقيق التميز في الأداء الحكومي وتأسيس البنية التحتية اللازمة لتحسين العيش وتعزيز التنمية المستدامة.',
-        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/national_transformation.png',
       }
     ]
   },
@@ -39,13 +39,13 @@ const data = [
         id: 'strat-1',
         title: 'الاستراتيجية الوطنية للسياحة',
         description: 'تطوير القطاع السياحي ليكون أحد الروافد الأساسية للاقتصاد الوطني، وجذب السياح من مختلف أنحاء العالم.',
-        image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/tourism_strategy.png',
       },
       {
         id: 'strat-2',
         title: 'الاستراتيجية الوطنية للاستثمار',
         description: 'جذب الاستثمارات الأجنبية والمحلية لتعزيز النمو الاقتصادي المتنوع وخلق بيئة استثمارية جاذبة.',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/investment_strategy.png',
       }
     ]
   },
@@ -58,19 +58,19 @@ const data = [
         id: 'proj-1',
         title: 'نيوم (NEOM)',
         description: 'مشروع حالم ومستقبل جديد، يركز على الابتكار والاستدامة ليصبح نموذجاً عالمياً رائداً في مختلف القطاعات.',
-        image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2070&auto=format&fit=crop',
+        image: '/images/neom_city.png',
       },
       {
         id: 'proj-2',
         title: 'مشروع البحر الأحمر',
         description: 'وجهة سياحية فاخرة ممتدة على ساحل البحر الأحمر بتنوع بيئي فريد وتجارب استثنائية.',
-        image: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=2074&auto=format&fit=crop',
+        image: '/images/red_sea_project.png',
       },
       {
         id: 'proj-3',
         title: 'القدية',
         description: 'عاصمة الترفيه والرياضة والفنون في المملكة العربية السعودية، وجهة ترفيهية متكاملة.',
-        image: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=2000&auto=format&fit=crop',
+        image: '/images/qiddiya_entertainment.png',
       }
     ]
   }
@@ -146,7 +146,7 @@ export default function VisionSection() {
     <section 
       dir="rtl"
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-black font-thmanyah"
+      className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center bg-black font-thmanyah"
     >
       {/* Dynamic Main Background */}
       <AnimatePresence initial={false}>
@@ -166,11 +166,11 @@ export default function VisionSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20" />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center h-full py-24 gap-12 lg:gap-24">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col md:flex-row items-center justify-center h-full py-16 md:py-24 gap-6 md:gap-12 lg:gap-24">
         
-        {/* Right Side: Vertical Tabs */}
+        {/* Right Side: Tabs (Horizontal on mobile, Vertical on desktop) */}
         {/* Note: In RTL flex-row, the first child is on the RIGHT */}
-        <div className="hidden md:flex flex-col gap-12 items-start w-full md:w-1/3 z-20">
+        <div className="flex flex-row md:flex-col gap-4 sm:gap-6 md:gap-12 items-center md:items-start w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] md:w-1/3 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 z-20 overflow-x-auto md:overflow-visible pb-2 md:pb-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {data.map((section, idx) => {
             const isActive = idx === activeSectionIndex;
             return (
@@ -180,15 +180,15 @@ export default function VisionSection() {
                   handleSectionChange(idx);
                   lastScrollTime.current = Date.now();
                 }}
-                className="group relative flex items-center gap-6 py-3 text-right w-full outline-none"
+                className="group relative flex items-center gap-2 sm:gap-3 md:gap-6 py-2 md:py-3 text-right shrink-0 outline-none snap-center"
               >
                 {/* Indicator Icon */}
-                <div className="relative flex items-center justify-center w-8 h-8 shrink-0">
-                   <div className={`w-3.5 h-3.5 rotate-45 transition-all duration-500 ${isActive ? 'bg-white scale-125' : 'bg-white/20 group-hover:bg-white/50'}`} />
+                <div className="relative flex items-center justify-center w-4 h-4 md:w-8 md:h-8 shrink-0">
+                   <div className={`w-1.5 h-1.5 md:w-3.5 md:h-3.5 rotate-45 transition-all duration-500 ${isActive ? 'bg-white scale-125' : 'bg-white/20 group-hover:bg-white/50'}`} />
                    {isActive && (
                      <motion.div
                        layoutId="activeTabIndicator"
-                       className="absolute inset-0 border-2 border-white rotate-45"
+                       className="absolute inset-0 border-[1.5px] md:border-2 border-white rotate-45"
                        initial={false}
                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                      />
@@ -196,7 +196,7 @@ export default function VisionSection() {
                 </div>
                 
                 {/* Text Tab */}
-                <span className={`text-4xl lg:text-5xl transition-all duration-500 tracking-wide ${isActive ? 'text-white scale-105 origin-right font-bold' : 'text-white/40 group-hover:text-white/70 font-light'}`}>
+                <span className={`text-base sm:text-lg md:text-4xl lg:text-5xl transition-all duration-500 tracking-wide whitespace-nowrap ${isActive ? 'text-white scale-105 origin-right font-bold' : 'text-white/40 group-hover:text-white/70 font-light'}`}>
                   {section.title}
                 </span>
               </button>
@@ -204,8 +204,8 @@ export default function VisionSection() {
           })}
         </div>
 
-        {/* Left Side: Vertical Carousel Card */}
-        <div className="w-full md:w-2/3 flex justify-end h-full md:h-auto items-center">
+        {/* Left Side: Carousel Card */}
+        <div className="w-full md:w-2/3 flex justify-center md:justify-end h-full md:h-auto items-center">
            <AnimatePresence mode="wait">
               <motion.div
                 key={`card-${activeSectionIndex}`}
@@ -213,10 +213,10 @@ export default function VisionSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 30 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="w-full max-w-lg bg-neutral-950/50 backdrop-blur-xl border border-white/10 rounded-[2rem] p-5 flex flex-col gap-6 shadow-2xl relative"
+                className="w-full max-w-lg bg-neutral-950/50 backdrop-blur-xl border border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-5 flex flex-col gap-4 md:gap-6 shadow-2xl relative"
               >
                  {/* The Carousel Image Area inside the card */}
-                 <div className="relative w-full h-64 sm:h-72 lg:h-80 rounded-2xl overflow-hidden group">
+                 <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80 rounded-xl md:rounded-2xl overflow-hidden group">
                    <AnimatePresence initial={false}>
                      <motion.img 
                        key={`thumb-${activeSectionIndex}-${activeImageIndex}`}
@@ -267,22 +267,22 @@ export default function VisionSection() {
                  </div>
 
                  {/* Text Content Area */}
-                 <div className="flex flex-col gap-4 px-2 pb-2">
-                   <span className="text-sm font-semibold text-white/60 tracking-wider">
+                 <div className="flex flex-col gap-3 md:gap-4 px-2 pb-2">
+                   <span className="text-xs md:text-sm font-semibold text-white/60 tracking-wider">
                      {data[activeSectionIndex].category}
                    </span>
-                   <h3 className="text-3xl md:text-4xl font-bold text-white">
+                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
                      {currentItem.title}
                    </h3>
-                   <p className="text-base md:text-lg text-white/80 leading-relaxed font-light min-h-[4.5rem]">
+                   <p className="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed font-light min-h-[4rem] md:min-h-[4.5rem]">
                      {currentItem.description}
                    </p>
                    
-                   <div className="mt-4 flex gap-4">
-                     <button className="flex-1 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-all duration-300">
+                   <div className="mt-2 md:mt-4 flex gap-3 md:gap-4">
+                     <button className="flex-1 py-2.5 md:py-3.5 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-all duration-300 text-sm md:text-base">
                        اكتشف المزيد
                      </button>
-                     <button className="px-6 py-3.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all duration-300">
+                     <button className="px-4 md:px-6 py-2.5 md:py-3.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all duration-300 text-sm md:text-base">
                        التفاصيل
                      </button>
                    </div>
