@@ -71,30 +71,32 @@ export default function SiteBackground({
 
       {/* Top Left Pattern Grid */}
       <div 
-        className="absolute top-0 left-0 w-[240px] h-[240px] md:w-[400px] md:h-[400px] grid grid-cols-3 grid-rows-3 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 md:opacity-100 transition-opacity"
+        className="absolute top-0 left-0 w-[120px] h-[120px] md:w-[200px] md:h-[200px] grid grid-cols-3 grid-rows-3 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 transition-opacity"
         dir="ltr"
       >
-        <div className="col-span-2 row-span-2 scale-[0.8] origin-top-left"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="45s" animDirection="normal" /></div>
-        <div className="col-start-3 row-start-1 scale-[0.8] origin-top-left -translate-x-[40%]"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="55s" animDirection="reverse" /></div>
-        <div className="col-start-1 row-start-3 scale-[0.8] origin-top-left -translate-y-[40%]"><SunburstSquare bgColor={colors.bottomLeft} origin="bl" animDuration="38s" animDirection="reverse" /></div>
+        <div className="col-span-2 row-span-2 scale-[0.8] origin-top-left"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="100s" animDirection="normal" /></div>
+        <div className="col-start-3 row-start-1 scale-[0.8] origin-top-left -translate-x-[40%]"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="120s" animDirection="reverse" /></div>
+        <div className="col-start-1 row-start-3 scale-[0.8] origin-top-left -translate-y-[40%]"><SunburstSquare bgColor={colors.bottomLeft} origin="bl" animDuration="90s" animDirection="reverse" /></div>
       </div>
 
       {/* Top Right Pattern Grid */}
       <div 
-        className="absolute top-0 right-0 w-[120px] h-[120px] md:w-[200px] md:h-[200px] grid grid-cols-2 grid-rows-2 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 md:opacity-90 transition-opacity"
+        className="absolute top-0 right-0 w-[120px] h-[120px] md:w-[200px] md:h-[200px] grid grid-cols-3 grid-rows-3 gap-[3px] md:gap-[4px] pointer-events-none z-0 opacity-20 transition-opacity"
         dir="ltr"
       >
-        <div className="col-span-2 row-start-1"><SunburstSquare bgColor={colors.bottomRight} origin="br" animDuration="50s" animDirection="reverse" /></div>
+        <div className="col-start-2 col-span-2 row-span-2 scale-[0.8] origin-top-right"><SunburstSquare bgColor={colors.topRight} origin="tr" animDuration="100s" animDirection="normal" /></div>
+        <div className="col-start-1 row-start-1 scale-[0.8] origin-top-right translate-x-[40%]"><SunburstSquare bgColor={colors.topLeft} origin="tl" animDuration="120s" animDirection="reverse" /></div>
+        <div className="col-start-3 row-start-3 scale-[0.8] origin-top-right -translate-y-[40%]"><SunburstSquare bgColor={colors.bottomRight} origin="br" animDuration="90s" animDirection="reverse" /></div>
       </div>
 
       {/* Left Edge Accent */}
-      <div className="absolute top-[40%] left-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-80" dir="ltr">
-         <SunburstSquare bgColor={colors.bottomLeft} origin="tl" className="rounded-r-full" animDuration="48s" animDirection="normal" />
+      <div className="absolute top-[40%] left-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-20" dir="ltr">
+         <SunburstSquare bgColor={colors.bottomLeft} origin="tl" className="rounded-r-full" animDuration="105s" animDirection="normal" />
       </div>
 
       {/* Right Edge Accent */}
-      <div className="absolute top-[52%] right-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-80" dir="ltr">
-         <SunburstSquare bgColor={colors.topRight} origin="tr" className="rounded-l-full" animDuration="52s" animDirection="reverse" />
+      <div className="absolute top-[52%] right-0 w-[40px] md:w-[80px] h-[80px] md:h-[160px] pointer-events-none z-0 opacity-20" dir="ltr">
+         <SunburstSquare bgColor={colors.topRight} origin="tr" className="rounded-l-full" animDuration="115s" animDirection="reverse" />
       </div>
 
       {/* Content wrapper */}
@@ -106,16 +108,17 @@ export default function SiteBackground({
       <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 h-[200px]">
         {/* Logo */}
         <div 
-          className="absolute bottom-[30px] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-1 w-[280px] sm:w-[350px] md:w-[550px]"
-          style={{ animation: 'float 6s ease-in-out infinite' }}
+          className="absolute bottom-[30px] left-1/2 -translate-x-1/2 w-[200px] sm:w-[250px] md:w-[300px]"
         >
-          <Image 
-            src="/Logo.svg" 
-            alt="Waha Youth Club Logo" 
-            width={400} 
-            height={160} 
-            className="w-full h-auto object-contain"
-          />
+          <div style={{ animation: 'float-horizontal 12s ease-in-out infinite' }}>
+            <Image 
+              src="/Logo.svg" 
+              alt="Waha Youth Club Logo" 
+              width={400} 
+              height={160} 
+              className="w-full h-auto object-contain"
+            />
+          </div>
         </div>
         {/* Bottom Wave Pattern */}
         <style>{`
@@ -127,9 +130,9 @@ export default function SiteBackground({
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
           }
-          @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+          @keyframes float-horizontal {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-20px); }
           }
         `}</style>
         <div 
