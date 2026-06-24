@@ -43,3 +43,10 @@ next-env.d.ts
 # Antigravity Skills & MCP
 .agents/
 skills-lock.json
+.superdesign/design-system.md
+.superdesign/init/components.md
+.superdesign/init/extractable-components.md
+.superdesign/init/layouts.md
+.superdesign/init/pages.md
+.superdesign/init/routes.md
+.superdesign/init/theme.md

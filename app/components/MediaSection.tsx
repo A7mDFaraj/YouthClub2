@@ -1,0 +1,324 @@
+"use client";
+
+import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Play, ChevronRight, ChevronLeft } from "lucide-react";
+import MediaModal, { type MediaItem } from "./MediaModal";
+
+const items: MediaItem[] = [
+  {
+    id: "m1",
+    title: "ورشة الابتكار الشبابي",
+    description: "ورشة عمل تفاعلية لتعزيز مهارات الابتكار والإبداع بين الشباب في بيئة ملهمة.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m2",
+    title: "مؤتمر قادة المستقبل",
+    description: "مؤتمر سنوي يجمع نخبة من القادة الشباب لتبادل الخبرات والرؤى.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m3",
+    title: "برنامج التدريب المهني",
+    description: "برنامج متكامل لتأهيل الشباب وتطوير مهاراتهم المهنية.",
+    type: "video",
+    poster: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+  },
+  {
+    id: "m4",
+    title: "معرض المشاريع الإبداعية",
+    description: "معرض يعرض أبرز المشاريع الإبداعية التي طورها الشباب.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m5",
+    title: "اليوم الرياضي الترفيهي السنوي الكبير",
+    description: "هذا اليوم الرياضي الترفيهي السنوي هو واحد من أبرز الفعاليات الشبابية التي ننظمها على مدار العام، حيث يجتمع الشباب من مختلف المناطق والمدن في ملتقى رياضي ترفيهي مميز مليء بالحيوية والنشاط والتنافس الشريف الذي يعزز القيم النبيلة ويرسخ مبادئ العمل الجماعي والتعاون المثمر بين الجميع. يتضمن اليوم العديد من الفعاليات والمسابقات الرياضية المتنوعة التي تهدف إلى تعزيز الروح الرياضية ونشر ثقافة النشاط البدني بين أوساط الشباب، بالإضافة إلى تنظيم ورش عمل توعوية حول أهمية الرياضة في بناء الشخصية السليمة وتحقيق التوازن النفسي والجسدي الذي يحتاجه كل شاب وفتاة في هذه المرحلة العمرية المهمة. يشمل البرنامج مجموعة كبيرة ومتنوعة من الأنشطة التفاعلية الشيقة مثل سباقات التحدي والقدرة على التحمل، مباريات كرة القدم والطائرة والسلة، مسابقات اللياقة البدنية والقوى، وألعاب القوى المختلفة في المضمار والميدان، إلى جانب ركن خاص للتغذية الصحية حيث يقدم نخبة من أخصائيي التغذية نصائح وإرشادات قيمة حول أنماط الحياة الصحية المتوازنة التي تعزز مناعة الجسم وتحسن الأداء الرياضي. تهدف هذه الفعالية السنوية الكبيرة إلى ترسيخ قيم التعاون والمثابرة والانضباط والالتزام لدى الشباب، واكتشاف المواهب الرياضية الواعدة في مختلف الألعاب والرياضات، وتشجيعهم على ممارسة الرياضة بشكل منتظم كأسلوب حياة يعزز من جودة حياتهم البدنية والنفسية والاجتماعية، ويسهم في بناء مجتمع صحي ونشط قادر على مواجهة التحديات وتحقيق الطموحات الوطنية الكبرى في ظل رؤية المملكة 2030 التي تضع الشباب في صدارة الأولويات وتعمل على تمكينهم في جميع المجالات. نؤمن في هذه المبادرة بأن الشباب هم ثروة الوطن الحقيقية وعماد المستقبل المشرق، وأن الاستثمار في صحتهم البدنية والنفسية هو استثمار في مستقبل الأمة بأسرها، ولذلك نحرص كل الحرص على تقديم برامج رياضية متميزة تجمع بين المتعة والفائدة، وتراعي احتياجات الشباب وتطلعاتهم، وتساعدهم على اكتشاف قدراتهم الكامنة وتطوير مهاراتهم الشخصية والاجتماعية من خلال بيئة رياضية آمنة ومحفزة تحت إشراف نخبة من المدربين والمشرفين المؤهلين وذوي الخبرة الطويلة في المجال الرياضي الشبابي.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m6",
+    title: "فرص التمويل والدعم للمشاريع الناشئة",
+    description: "محاضرة توعوية شاملة حول فرص التمويل والدعم المالي المتاحة للمشاريع الناشئة الشبابية في المملكة العربية السعودية، تتناول آليات الحصول على الدعم من صناديق التنمية المختلفة، وشروط التقديم على المنح الحكومية، وكيفية إعداد خطط العمل الاحترافية التي تؤهل الشباب للفوز بفرص استثمارية واعدة، بالإضافة إلى استعراض قصص نجاح ملهمة لمشاريع شبابية استطاعت أن تحقق نقلة نوعية بفضل الدعم المناسب في الوقت المناسب.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m7",
+    title: "رحلة المعرفة",
+    description: "رحلة تعليمية تفاعلية تجمع بين التعلم والتجربة الميدانية.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "m8",
+    title: "ورشة التصميم الرقمي الحديثة",
+    description: "ورشة عمل متخصصة في أدوات التصميم الرقمي الحديثة وتطبيقاتها العملية.",
+    type: "video",
+    poster: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+  },
+];
+
+const floatConfig = [
+  { duration: 3.5, delay: 0 },
+  { duration: 4.2, delay: 0.3 },
+  { duration: 3.8, delay: 0.6 },
+  { duration: 4.5, delay: 0.1 },
+  { duration: 3.2, delay: 0.8 },
+  { duration: 4.0, delay: 0.4 },
+  { duration: 3.6, delay: 0.2 },
+  { duration: 4.3, delay: 0.7 },
+];
+
+export default function MediaSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ down: false, startX: 0, scrollLeft: 0, moved: false });
+
+  const scrollBy = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = Math.min(el.clientWidth * 0.65, 600);
+    el.scrollBy({ left: dir === "right" ? amount : -amount, behavior: "smooth" });
+  };
+
+  const onDragStart = (e: React.MouseEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    drag.current = { down: true, startX: e.pageX, scrollLeft: el.scrollLeft, moved: false };
+    el.style.cursor = "grabbing";
+  };
+
+  const onDragMove = (e: React.MouseEvent) => {
+    if (!drag.current.down || !scrollRef.current) return;
+    const dx = e.pageX - drag.current.startX;
+    if (Math.abs(dx) > 5) drag.current.moved = true;
+    scrollRef.current.scrollLeft = drag.current.scrollLeft - dx;
+  };
+
+  const onDragEnd = () => {
+    if (!drag.current.down) return;
+    drag.current.down = false;
+    if (scrollRef.current) scrollRef.current.style.cursor = "";
+  };
+
+  const handleCardClick = (item: MediaItem) => {
+    if (drag.current.moved) {
+      drag.current.moved = false;
+      return;
+    }
+    setSelectedItem(item);
+    setModalOpen(true);
+  };
+
+  return (
+    <section dir="rtl" className="relative w-full bg-[#ffefd0] font-thmanyah overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-20 right-0 w-[35rem] h-[35rem] bg-[#1D7671]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-10 left-0 w-[30rem] h-[30rem] bg-[#1D7671]/5 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Header */}
+      <div className="relative w-full max-w-[100rem] mx-auto px-5 sm:px-12 lg:px-20 pt-16 md:pt-28 pb-4 md:pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-right"
+        >
+          {/* Subtitle pill */}
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-3 md:mb-4 rounded-full bg-[#1D7671]/10 border border-[#1D7671]/15 text-[11px] sm:text-xs md:text-sm font-bold text-[#1D7671] tracking-[0.2em] font-thmanyah">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#1D7671]/40" />
+            معرض الوسائط
+          </span>
+
+          {/* Title */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#1D7671] mb-3 md:mb-4 leading-[1.05] tracking-tight font-thmanyah">
+            لحظات{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-[#1D7671]">ملهمة</span>
+              <span className="absolute -bottom-1 left-0 right-0 h-3 md:h-4 bg-[#1D7671]/10 rounded-full -skew-x-6" />
+            </span>
+          </h2>
+
+          {/* Decorative line */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 md:w-16 h-[3px] bg-gradient-to-l from-[#1D7671]/40 to-transparent rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-[#1D7671]/20" />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Floating cards track */}
+      <div className="relative w-full">
+        <div
+          ref={scrollRef}
+          onMouseDown={onDragStart}
+          onMouseMove={onDragMove}
+          onMouseUp={onDragEnd}
+          onMouseLeave={onDragEnd}
+          className="w-full overflow-x-auto pb-6 md:pb-10 scroll-smooth media-scroll-x cursor-grab select-none"
+        >
+          <div className="flex gap-4 md:gap-6 lg:gap-8 px-5 sm:px-12 lg:px-20 w-max items-center py-4 md:py-6">
+            {items.map((item, i) => (
+              <FloatingCard
+                key={item.id}
+                item={item}
+                index={i}
+                config={floatConfig[i % floatConfig.length]}
+                onClick={handleCardClick}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Arrows — always visible */}
+        <button
+          onClick={() => scrollBy("right")}
+          aria-label="التالي"
+          className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-4 lg:right-8 z-20 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-white/70 backdrop-blur-xl border border-[#1D7671]/20 text-[#1D7671] hover:bg-white/90 hover:border-[#1D7671]/40 shadow-lg transition-all duration-200"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+        </button>
+        <button
+          onClick={() => scrollBy("left")}
+          aria-label="السابق"
+          className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 lg:left-8 z-20 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-white/70 backdrop-blur-xl border border-[#1D7671]/20 text-[#1D7671] hover:bg-white/90 hover:border-[#1D7671]/40 shadow-lg transition-all duration-200"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+        </button>
+
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-l from-[#ffefd0] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-r from-[#ffefd0] to-transparent z-10" />
+      </div>
+
+      <MediaModal isOpen={modalOpen} item={selectedItem} onClose={() => setModalOpen(false)} />
+    </section>
+  );
+}
+
+/* ─── Floating Card ────────────────────────────────── */
+
+function FloatingCard({
+  item,
+  index,
+  config,
+  onClick,
+}: {
+  item: MediaItem;
+  index: number;
+  config: { duration: number; delay: number };
+  onClick: (item: MediaItem) => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      animate={{ y: [0, -7, 0, -4, 0] }}
+      transition={{
+        duration: config.duration,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: config.delay,
+      }}
+      className="shrink-0"
+    >
+      <motion.button
+        initial={{ opacity: 0, y: 60, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 18,
+          delay: Math.min(index * 0.08, 0.6),
+        }}
+        whileHover={{
+          y: -12,
+          scale: 1.03,
+          transition: { type: "spring", stiffness: 250, damping: 15 },
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={() => onClick(item)}
+        className="group relative w-[65vw] sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer outline-none bg-white/20 backdrop-blur-2xl border border-white/30 shadow-[0_8px_30px_rgba(29,118,113,0.06)] hover:shadow-[0_24px_64px_rgba(29,118,113,0.15)] transition-shadow duration-500"
+        style={{ willChange: "transform" }}
+      >
+        {/* Accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-[#1D7671]/20 to-transparent z-20" />
+
+        {/* Media */}
+        {item.type === "video" ? (
+          <>
+            <img
+              src={item.poster}
+              alt={item.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              draggable={false}
+            />
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white/50">
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#1D7671] fill-[#1D7671] mr-[-1px]" />
+              </div>
+            </div>
+          </>
+        ) : (
+          <img
+            src={item.src}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            draggable={false}
+          />
+        )}
+
+        {/* Bottom gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D7671]/80 via-[#1D7671]/10 to-transparent pointer-events-none" />
+
+        {/* Hover text */}
+        <motion.div
+          className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-right pointer-events-none"
+          initial={false}
+          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          <span className="text-[10px] md:text-xs font-bold text-white/60 tracking-[0.15em] block mb-1.5 md:mb-2 font-thmanyah">
+            {item.type === "video" ? "فيديو" : "صورة"}
+          </span>
+          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-white mb-1 md:mb-1.5 leading-tight font-thmanyah">
+            {item.title}
+          </h3>
+          <p className="text-xs sm:text-sm text-white/80 leading-relaxed line-clamp-2 font-light font-thmanyah">
+            {item.description}
+          </p>
+        </motion.div>
+
+        {/* Always-visible title */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-right pointer-events-none">
+          <h3
+            className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold text-white leading-tight transition-opacity duration-300 font-thmanyah ${
+              hovered ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            {item.title}
+          </h3>
+        </div>
+
+        {/* Index badge */}
+        <div className="absolute top-3 right-3 md:top-4 md:right-4 z-10">
+          <span className="text-[9px] md:text-[10px] font-bold text-white/40 font-thmanyah">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+      </motion.button>
+    </motion.div>
+  );
+}

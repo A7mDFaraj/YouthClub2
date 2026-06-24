@@ -33,3 +33,13 @@ body {
   font-family: inherit;
 }
 
+/* Horizontal scroll track */
+.media-scroll-x {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.media-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
