@@ -110,7 +110,7 @@ export default function SiteBackground({
           style={{ animation: 'float 6s ease-in-out infinite' }}
         >
           <Image 
-            src="/svg/Logo_cropped.svg" 
+            src="/Logo.svg" 
             alt="Waha Youth Club Logo" 
             width={400} 
             height={160} 

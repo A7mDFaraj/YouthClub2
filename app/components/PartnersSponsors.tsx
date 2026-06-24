@@ -8,17 +8,36 @@ const BrandTile = ({ src, className = "" }: { src: string, className?: string })
   </div>
 );
 
-const PartnerPlaceholder = ({ label }: { label: string }) => (
-  <div className="relative w-full aspect-square md:aspect-[4/3] rounded-[2.5rem] bg-[#004a75]/5 backdrop-blur-xl shadow-[0_15px_50px_rgba(0,104,161,0.1)] border border-[#004a75]/10 flex flex-col items-center justify-center overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,104,161,0.2)] transition-all duration-500">
+const PartnerPlaceholder = ({ label, src, alt }: { label?: string, src?: string, alt?: string }) => (
+  <div className="relative w-full aspect-[3/2] sm:aspect-[4/3] rounded-[2.5rem] bg-[#004a75]/5 backdrop-blur-xl shadow-[0_15px_50px_rgba(0,104,161,0.1)] border border-[#004a75]/10 flex flex-col items-center justify-center overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,104,161,0.2)] transition-all duration-500">
     {/* Decorative background circle */}
     <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#004a75]/10 to-transparent rounded-bl-full transition-transform duration-700 group-hover:scale-[1.35] origin-top-right"></div>
     <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#83e6d6]/30 to-transparent rounded-tr-full transition-transform duration-700 group-hover:scale-[1.35] origin-bottom-left"></div>
     
-    <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-[#004a75]/5 backdrop-blur-md shadow-inner border border-[#004a75]/10 flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:border-[#004a75]/20 group-hover:bg-[#004a75]/10 overflow-hidden">
-      <span className="text-[#004a75] text-lg md:text-xl font-bold relative z-10">{label}</span>
+    <div className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-[2rem] bg-white/40 backdrop-blur-md shadow-inner border border-[#004a75]/10 flex items-center justify-center transition-all duration-500 group-hover:border-[#004a75]/20 group-hover:bg-white/70 overflow-hidden p-2">
+      {src ? (
+        <>
+          {/* Mobile View: Infinite breathing animation */}
+          <motion.img 
+            src={src} 
+            alt={alt || "شريك"} 
+            className="w-full h-full object-contain drop-shadow-sm md:hidden" 
+            animate={{ scale: [1.25, 1.35, 1.25] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Desktop View: Interactive hover zoom */}
+          <img 
+            src={src} 
+            alt={alt || "شريك"} 
+            className="hidden md:block w-full h-full scale-125 object-contain drop-shadow-sm group-hover:drop-shadow-md transition-all duration-500 group-hover:scale-[1.35]" 
+          />
+        </>
+      ) : (
+        <span className="text-[#004a75] text-lg md:text-xl font-bold relative z-10">{label}</span>
+      )}
     </div>
     
-    <div className="relative z-10 h-3 w-20 bg-gradient-to-r from-[#004a75]/40 to-[#004a75]/80 rounded-full transition-all duration-500 group-hover:w-32"></div>
+    <div className="absolute bottom-6 sm:bottom-8 z-10 h-3 w-20 bg-gradient-to-r from-[#004a75]/40 to-[#004a75]/80 rounded-full transition-all duration-500 group-hover:w-32"></div>
   </div>
 );
 
@@ -74,7 +93,11 @@ export default function PartnersSponsors() {
         {/* Governmental Partners */}
         <div className="mb-28 lg:mb-36">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 px-4 sm:px-10 lg:px-0">
-            {[1, 2, 3].map((item, index) => (
+            {[
+              { src: "/Partners/Minisrty-of-Education.svg", alt: "Ministry of Education" },
+              { src: "/Partners/talemia.svg", alt: "Talemia" },
+              { src: "/Partners/KSSO_logo-1_260609_185237.svg", alt: "KSSO" }
+            ].map((partner, index) => (
               <motion.div
                 key={`gov-${index}`}
                 initial={{ opacity: 0, y: 50 }}
@@ -83,7 +106,7 @@ export default function PartnersSponsors() {
                 transition={{ duration: 0.8, delay: index * 0.2, type: "spring", stiffness: 100 }}
                 whileHover={{ y: -15, transition: { duration: 0.3 } }}
               >
-                <PartnerPlaceholder label={`شريك حكومي ${item}`} />
+                <PartnerPlaceholder src={partner.src} alt={partner.alt} />
               </motion.div>
             ))}
           </div>

@@ -114,7 +114,7 @@ export default function Hero() {
                animate={{ scale: 1, opacity: 1 }}
                transition={{ type: "spring", stiffness: 200, damping: 15, delay: 2.0 }}
              >
-               <img src="/svg/Logo_cropped.svg" alt="Logo" className="w-[280px] sm:w-[320px] lg:w-[420px] object-contain drop-shadow-2xl" />
+               <img src="/Logo.svg" alt="Logo" className="w-[280px] sm:w-[320px] lg:w-[420px] object-contain drop-shadow-2xl" />
              </motion.div>
           </motion.div>
 

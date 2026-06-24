@@ -38,7 +38,7 @@ export default function ClubDetailsPage() {
             <div className="relative shrink-0 mx-auto lg:mx-0">
               <div className="absolute inset-0 bg-gradient-to-br from-[#ff9f9d] to-[#fd5c3d] rounded-[1rem] md:rounded-[1.5rem] blur-xl opacity-30 translate-y-2 scale-90" />
               <div className="relative w-16 h-16 md:w-28 md:h-28 bg-white/20 backdrop-blur-xl rounded-[1rem] md:rounded-[1.25rem] p-1.5 md:p-2 shadow-xl border border-white/40 flex items-center justify-center">
-                <img src="/club_logo.png" className="w-full h-full object-contain drop-shadow-sm mix-blend-multiply md:mix-blend-normal" alt="Club Logo" />
+                <img src="/Logo.svg" className="w-full h-full object-contain drop-shadow-sm mix-blend-multiply md:mix-blend-normal" alt="Club Logo" />
               </div>
             </div>
 
