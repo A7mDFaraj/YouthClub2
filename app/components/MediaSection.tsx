@@ -99,6 +99,7 @@ export default function MediaSection() {
 
   const onDragMove = (e: React.MouseEvent) => {
     if (!drag.current.down || !scrollRef.current) return;
+    e.preventDefault();
     const dx = e.pageX - drag.current.startX;
     if (Math.abs(dx) > 5) drag.current.moved = true;
     scrollRef.current.scrollLeft = drag.current.scrollLeft - dx;
@@ -134,25 +135,22 @@ export default function MediaSection() {
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-right"
         >
-          {/* Subtitle pill */}
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-3 md:mb-4 rounded-full bg-[#1D7671]/10 border border-[#1D7671]/15 text-[11px] sm:text-xs md:text-sm font-bold text-[#1D7671] tracking-[0.2em] font-thmanyah">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1D7671]/40" />
-            معرض الوسائط
-          </span>
-
           {/* Title */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#1D7671] mb-3 md:mb-4 leading-[1.05] tracking-tight font-thmanyah">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#114b48] mb-3 md:mb-5 leading-[1.2] font-thmanyah">
             لحظات{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-[#1D7671]">ملهمة</span>
-              <span className="absolute -bottom-1 left-0 right-0 h-3 md:h-4 bg-[#1D7671]/10 rounded-full -skew-x-6" />
+            <span className="relative inline-block px-1.5">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#1D7671] via-[#32b5ac] to-[#1D7671] drop-shadow-sm">
+                ملهمة
+              </span>
+              <span className="absolute bottom-1 left-0 right-0 h-2 md:h-3 bg-gradient-to-r from-[#1D7671]/20 to-transparent rounded-full -skew-x-12" />
             </span>
           </h2>
 
           {/* Decorative line */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 md:w-16 h-[3px] bg-gradient-to-l from-[#1D7671]/40 to-transparent rounded-full" />
-            <div className="w-2 h-2 rounded-full bg-[#1D7671]/20" />
+          <div className="flex items-center gap-3 mt-2">
+            <div className="w-12 md:w-20 h-[4px] bg-gradient-to-l from-[#1D7671]/60 to-transparent rounded-full" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#1D7671]/40" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#1D7671]/20" />
           </div>
         </motion.div>
       </div>
@@ -165,9 +163,9 @@ export default function MediaSection() {
           onMouseMove={onDragMove}
           onMouseUp={onDragEnd}
           onMouseLeave={onDragEnd}
-          className="w-full overflow-x-auto pb-6 md:pb-10 scroll-smooth media-scroll-x cursor-grab select-none"
+          className="w-full overflow-x-auto pb-6 md:pb-10 media-scroll-x cursor-grab active:cursor-grabbing select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          <div className="flex gap-4 md:gap-6 lg:gap-8 px-5 sm:px-12 lg:px-20 w-max items-center py-4 md:py-6">
+          <div className="flex gap-4 md:gap-6 lg:gap-8 px-5 sm:px-12 lg:px-20 w-max items-center py-8 md:py-12">
             {items.map((item, i) => (
               <FloatingCard
                 key={item.id}
@@ -231,10 +229,11 @@ function FloatingCard({
         delay: config.delay,
       }}
       className="shrink-0"
+      style={{ perspective: 1500 }}
     >
       <motion.button
-        initial={{ opacity: 0, y: 60, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -15, rotateX: 5 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1, rotateY: -15, rotateX: 5 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{
           type: "spring",
@@ -243,81 +242,87 @@ function FloatingCard({
           delay: Math.min(index * 0.08, 0.6),
         }}
         whileHover={{
-          y: -12,
-          scale: 1.03,
-          transition: { type: "spring", stiffness: 250, damping: 15 },
+          y: -15,
+          scale: 1.08,
+          rotateY: 0,
+          rotateX: 0,
+          transition: { type: "spring", stiffness: 300, damping: 20 },
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={() => onClick(item)}
-        className="group relative w-[65vw] sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer outline-none bg-white/20 backdrop-blur-2xl border border-white/30 shadow-[0_8px_30px_rgba(29,118,113,0.06)] hover:shadow-[0_24px_64px_rgba(29,118,113,0.15)] transition-shadow duration-500"
-        style={{ willChange: "transform" }}
+        className="group relative w-[70vw] sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] aspect-[3/4] rounded-[3rem] overflow-hidden p-4 md:p-5 bg-gradient-to-br from-[#e0f7f4]/50 via-[#80cec3]/40 to-[#1D7671]/60 backdrop-blur-2xl border-[2px] border-white/70 shadow-[inset_6px_6px_16px_rgba(255,255,255,0.9),inset_-8px_-8px_20px_rgba(17,75,72,0.8),0_20px_50px_rgba(0,0,0,0.25)] hover:shadow-[inset_8px_8px_20px_rgba(255,255,255,1),inset_-10px_-10px_25px_rgba(17,75,72,0.9),0_30px_60px_rgba(0,0,0,0.35)] transition-all duration-500 cursor-pointer outline-none"
+        style={{ willChange: "transform", transformStyle: "preserve-3d" }}
       >
-        {/* Accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-[#1D7671]/20 to-transparent z-20" />
+        {/* Animated swirling liquid colors inside the glass border */}
+        <div className="absolute inset-0 rounded-[3rem] overflow-hidden z-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-overlay">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(224,247,244,0.1)_0%,rgba(128,206,195,0.8)_25%,rgba(29,118,113,0.9)_50%,rgba(128,206,195,0.8)_75%,rgba(224,247,244,0.1)_100%)] animate-[spin_8s_linear_infinite] blur-[20px]" />
+        </div>
 
-        {/* Media */}
-        {item.type === "video" ? (
-          <>
+        {/* Liquid reflection highlight for 3D glass effect */}
+        <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none mix-blend-overlay opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+        
+        {/* Inner Media Container */}
+        <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-black/20 z-10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+          {item.type === "video" ? (
+            <>
+              <img
+                src={item.poster}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                draggable={false}
+              />
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-white/30 backdrop-blur-md border border-white/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white/50 shadow-[0_4px_16px_rgba(0,0,0,0.1)]">
+                  <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white fill-white mr-[-2px]" />
+                </div>
+              </div>
+            </>
+          ) : (
             <img
-              src={item.poster}
+              src={item.src}
               alt={item.title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               draggable={false}
             />
-            <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white/50">
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#1D7671] fill-[#1D7671] mr-[-1px]" />
-              </div>
-            </div>
-          </>
-        ) : (
-          <img
-            src={item.src}
-            alt={item.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            draggable={false}
-          />
-        )}
+          )}
 
-        {/* Bottom gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1D7671]/80 via-[#1D7671]/10 to-transparent pointer-events-none" />
+          {/* Deep Recess Overlay for depth */}
+          <div className="absolute inset-0 rounded-[2rem] shadow-[inset_0_8px_20px_rgba(0,0,0,0.5),inset_0_1px_3px_rgba(0,0,0,0.6)] pointer-events-none z-20 transition-opacity duration-500 group-hover:opacity-80" />
 
-        {/* Hover text */}
-        <motion.div
-          className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-right pointer-events-none"
-          initial={false}
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-        >
-          <span className="text-[10px] md:text-xs font-bold text-white/60 tracking-[0.15em] block mb-1.5 md:mb-2 font-thmanyah">
-            {item.type === "video" ? "فيديو" : "صورة"}
-          </span>
-          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-white mb-1 md:mb-1.5 leading-tight font-thmanyah">
-            {item.title}
-          </h3>
-          <p className="text-xs sm:text-sm text-white/80 leading-relaxed line-clamp-2 font-light font-thmanyah">
-            {item.description}
-          </p>
-        </motion.div>
+          {/* Bottom gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#114b48]/90 via-[#1D7671]/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20" />
 
-        {/* Always-visible title */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-right pointer-events-none">
-          <h3
-            className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold text-white leading-tight transition-opacity duration-300 font-thmanyah ${
-              hovered ? "opacity-0" : "opacity-100"
-            }`}
+          {/* Hover text */}
+          <motion.div
+            className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 text-right pointer-events-none z-30"
+            initial={false}
+            animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {item.title}
-          </h3>
+            <span className="text-[10px] md:text-xs font-bold text-white/70 tracking-[0.15em] block mb-2 font-thmanyah">
+              {item.type === "video" ? "فيديو" : "صورة"}
+            </span>
+            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-white mb-2 leading-tight font-thmanyah">
+              {item.title}
+            </h3>
+            <p className="text-xs sm:text-sm text-white/90 leading-relaxed line-clamp-3 font-light font-thmanyah">
+              {item.description}
+            </p>
+          </motion.div>
+
+          {/* Always-visible title */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-right pointer-events-none z-30">
+            <h3
+              className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white leading-tight transition-opacity duration-300 font-thmanyah drop-shadow-md ${
+                hovered ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              {item.title}
+            </h3>
+          </div>
         </div>
 
-        {/* Index badge */}
-        <div className="absolute top-3 right-3 md:top-4 md:right-4 z-10">
-          <span className="text-[9px] md:text-[10px] font-bold text-white/40 font-thmanyah">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
       </motion.button>
     </motion.div>
   );
