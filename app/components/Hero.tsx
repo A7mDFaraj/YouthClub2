@@ -44,15 +44,19 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Minimal Professional Decorative Borders */}
+      {/* Slogan */}
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute top-[52px] sm:top-[64px] lg:top-[72px] left-0 flex pointer-events-none z-0 opacity-70 md:opacity-80 hover:opacity-100 transition-opacity"
+        className="absolute top-[72px] sm:top-[90px] lg:top-[110px] left-6 sm:left-10 lg:left-16 flex flex-col items-center pointer-events-none z-20"
       >
-        <BrandTile src="/svg/art-01-tl.svg" />
-        <BrandTile src="/svg/art-01-tr.svg" className="hidden sm:flex" />
+        <svg width="220" height="24" viewBox="0 0 220 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mb-1 w-[130px] sm:w-[180px] lg:w-[220px] opacity-90">
+          <path d="M5 16 Q 55 0, 110 12 T 215 6" stroke="#e87858" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+        </svg>
+        <span className="text-[#3a5a78] font-bold text-lg sm:text-2xl lg:text-3xl drop-shadow-sm">
+          نحو صيفٍ يشع حياة
+        </span>
       </motion.div>
 
       <motion.div 
