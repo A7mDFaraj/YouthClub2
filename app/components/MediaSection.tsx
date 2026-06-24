@@ -2,67 +2,66 @@
 
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Play, ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import MediaModal, { type MediaItem } from "./MediaModal";
 
 const items: MediaItem[] = [
   {
     id: "m1",
-    title: "ورشة الابتكار الشبابي",
-    description: "ورشة عمل تفاعلية لتعزيز مهارات الابتكار والإبداع بين الشباب في بيئة ملهمة.",
+    title: "غابة استوائية خضراء",
+    description: "غابة استوائية مليئة بالنباتات الخضراء والحياة البرية.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m2",
-    title: "مؤتمر قادة المستقبل",
-    description: "مؤتمر سنوي يجمع نخبة من القادة الشباب لتبادل الخبرات والرؤى.",
+    title: "جبال مغطاة بالضباب",
+    description: "منظر ساحر لجبال تغطيها طبقات من الضباب الكثيف.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m3",
-    title: "برنامج التدريب المهني",
-    description: "برنامج متكامل لتأهيل الشباب وتطوير مهاراتهم المهنية.",
+    title: "شلال في الغابة",
+    description: "شلال طبيعي ينساب بين الأشجار والصخور في قلب الغابة.",
     type: "video",
-    poster: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    poster: "https://images.unsplash.com/photo-1432405972618-c6b0c0d40b2f?auto=format&fit=crop&w=1200&q=80",
+    src: "https://i.imgur.com/jelYwDX.mp4",
   },
   {
     id: "m4",
-    title: "معرض المشاريع الإبداعية",
-    description: "معرض يعرض أبرز المشاريع الإبداعية التي طورها الشباب.",
+    title: "محيط أزرق صافٍ",
+    description: "محيط بأمواج هادئة ولون أزرق فيروزي جميل.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m5",
-    title: "اليوم الرياضي الترفيهي السنوي الكبير",
-    description: "هذا اليوم الرياضي الترفيهي السنوي هو واحد من أبرز الفعاليات الشبابية التي ننظمها على مدار العام، حيث يجتمع الشباب من مختلف المناطق والمدن في ملتقى رياضي ترفيهي مميز مليء بالحيوية والنشاط والتنافس الشريف الذي يعزز القيم النبيلة ويرسخ مبادئ العمل الجماعي والتعاون المثمر بين الجميع. يتضمن اليوم العديد من الفعاليات والمسابقات الرياضية المتنوعة التي تهدف إلى تعزيز الروح الرياضية ونشر ثقافة النشاط البدني بين أوساط الشباب، بالإضافة إلى تنظيم ورش عمل توعوية حول أهمية الرياضة في بناء الشخصية السليمة وتحقيق التوازن النفسي والجسدي الذي يحتاجه كل شاب وفتاة في هذه المرحلة العمرية المهمة. يشمل البرنامج مجموعة كبيرة ومتنوعة من الأنشطة التفاعلية الشيقة مثل سباقات التحدي والقدرة على التحمل، مباريات كرة القدم والطائرة والسلة، مسابقات اللياقة البدنية والقوى، وألعاب القوى المختلفة في المضمار والميدان، إلى جانب ركن خاص للتغذية الصحية حيث يقدم نخبة من أخصائيي التغذية نصائح وإرشادات قيمة حول أنماط الحياة الصحية المتوازنة التي تعزز مناعة الجسم وتحسن الأداء الرياضي. تهدف هذه الفعالية السنوية الكبيرة إلى ترسيخ قيم التعاون والمثابرة والانضباط والالتزام لدى الشباب، واكتشاف المواهب الرياضية الواعدة في مختلف الألعاب والرياضات، وتشجيعهم على ممارسة الرياضة بشكل منتظم كأسلوب حياة يعزز من جودة حياتهم البدنية والنفسية والاجتماعية، ويسهم في بناء مجتمع صحي ونشط قادر على مواجهة التحديات وتحقيق الطموحات الوطنية الكبرى في ظل رؤية المملكة 2030 التي تضع الشباب في صدارة الأولويات وتعمل على تمكينهم في جميع المجالات. نؤمن في هذه المبادرة بأن الشباب هم ثروة الوطن الحقيقية وعماد المستقبل المشرق، وأن الاستثمار في صحتهم البدنية والنفسية هو استثمار في مستقبل الأمة بأسرها، ولذلك نحرص كل الحرص على تقديم برامج رياضية متميزة تجمع بين المتعة والفائدة، وتراعي احتياجات الشباب وتطلعاتهم، وتساعدهم على اكتشاف قدراتهم الكامنة وتطوير مهاراتهم الشخصية والاجتماعية من خلال بيئة رياضية آمنة ومحفزة تحت إشراف نخبة من المدربين والمشرفين المؤهلين وذوي الخبرة الطويلة في المجال الرياضي الشبابي.",
+    title: "حقل أزهار ملونة",
+    description: "حقل مفتوح مغطى بأزهار ملونة في يوم مشمس.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m6",
-    title: "فرص التمويل والدعم للمشاريع الناشئة",
-    description: "محاضرة توعوية شاملة حول فرص التمويل والدعم المالي المتاحة للمشاريع الناشئة الشبابية في المملكة العربية السعودية، تتناول آليات الحصول على الدعم من صناديق التنمية المختلفة، وشروط التقديم على المنح الحكومية، وكيفية إعداد خطط العمل الاحترافية التي تؤهل الشباب للفوز بفرص استثمارية واعدة، بالإضافة إلى استعراض قصص نجاح ملهمة لمشاريع شبابية استطاعت أن تحقق نقلة نوعية بفضل الدعم المناسب في الوقت المناسب.",
+    title: "غروب الشمس على البحيرة",
+    description: "غروب مذهل ينعكس على سطح بحيرة هادئة.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m7",
-    title: "رحلة المعرفة",
-    description: "رحلة تعليمية تفاعلية تجمع بين التعلم والتجربة الميدانية.",
+    title: "جبال ثلجية شاهقة",
+    description: "قمم جبلية مغطاة بالثلوج البيضاء تحت سماء صافية.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "m8",
-    title: "ورشة التصميم الرقمي الحديثة",
-    description: "ورشة عمل متخصصة في أدوات التصميم الرقمي الحديثة وتطبيقاتها العملية.",
-    type: "video",
-    poster: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80",
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    title: "شجرة وحيدة في السهول",
+    description: "شجرة كبيرة واقفة بمفردها وسط مرج أخضر واسع.",
+    type: "image",
+    src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -265,19 +264,14 @@ function FloatingCard({
         {/* Inner Media Container */}
         <div className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black/30 z-10 shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
           {item.type === "video" ? (
-            <>
-              <img
-                src={item.poster}
-                alt={item.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                draggable={false}
-              />
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-white/30 backdrop-blur-md border border-white/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white/50 shadow-[0_4px_16px_rgba(0,0,0,0.1)]">
-                  <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white fill-white mr-[-2px]" />
-                </div>
-              </div>
-            </>
+            <video
+              src={item.src}
+              muted
+              loop
+              playsInline
+              autoPlay
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            />
           ) : (
             <img
               src={item.src}

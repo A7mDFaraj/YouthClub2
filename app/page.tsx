@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import PartnersSponsors from "./components/PartnersSponsors";
 import MediaSection from "./components/MediaSection";
+import MediaSection2 from "./components/MediaSection2";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <PartnersSponsors />
       <MediaSection />
+      <MediaSection2 />
     </main>
   );
 }

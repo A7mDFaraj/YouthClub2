@@ -87,6 +87,8 @@ export default function MediaModal({ isOpen, item, onClose }: MediaModalProps) {
                     poster={item.poster}
                     controls
                     autoPlay
+                    muted
+                    playsInline
                     className="w-full h-full object-cover"
                   />
                 ) : (
