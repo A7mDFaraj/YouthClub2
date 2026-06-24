@@ -101,12 +101,12 @@ export default function MediaModal({ isOpen, item, onClose }: MediaModalProps) {
               </div>
 
               {/* Text Content */}
-              <div className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-12 text-right bg-gradient-to-br from-white/95 to-white/80 backdrop-blur-md min-h-[30dvh] flex flex-col justify-center">
+              <div className="flex-1 overflow-y-auto p-5 sm:p-6 md:p-8 lg:p-10 text-right bg-gradient-to-br from-white/95 to-white/80 backdrop-blur-md min-h-[30dvh] flex flex-col justify-center md:justify-start">
                 <motion.h3 
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, type: "spring", damping: 15 }}
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#114b48] mb-5 leading-[1.3] font-thmanyah drop-shadow-sm"
+                  transition={{ delay: 0.1, type: "spring", damping: 15 }}
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-[#114b48] mb-3 leading-snug font-thmanyah drop-shadow-sm"
                 >
                   {item.title}
                 </motion.h3>
@@ -114,15 +114,15 @@ export default function MediaModal({ isOpen, item, onClose }: MediaModalProps) {
                 <motion.div 
                   initial={{ opacity: 0, scaleX: 0 }}
                   animate={{ opacity: 1, scaleX: 1 }}
-                  transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-                  className="w-20 h-1.5 bg-gradient-to-l from-[#1D7671] to-[#40c4bb] rounded-full mb-6 origin-right shadow-sm"
+                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+                  className="w-12 sm:w-16 h-[4px] bg-gradient-to-l from-[#1D7671] to-[#40c4bb] rounded-full mb-4 sm:mb-5 origin-right shadow-sm"
                 />
                 
                 <motion.p 
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, type: "spring", damping: 15 }}
-                  className="text-base sm:text-lg md:text-xl text-[#1D7671]/90 leading-relaxed font-medium font-thmanyah"
+                  transition={{ delay: 0.3, type: "spring", damping: 15 }}
+                  className="text-xs sm:text-sm md:text-base text-[#1D7671]/90 leading-relaxed font-medium font-thmanyah"
                 >
                   {item.description}
                 </motion.p>
