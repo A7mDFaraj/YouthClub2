@@ -55,16 +55,16 @@ export default function MediaModal({ isOpen, item, onClose }: MediaModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20, rotateX: -5 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="relative w-full max-w-5xl max-h-[95dvh] sm:max-h-[90vh] bg-gradient-to-br from-[#e0f7f4]/70 via-[#80cec3]/50 to-[#1D7671]/70 backdrop-blur-3xl border-[2px] border-white/60 rounded-[2rem] sm:rounded-[3rem] p-3 md:p-5 shadow-[inset_6px_6px_20px_rgba(255,255,255,0.9),inset_-8px_-8px_25px_rgba(17,75,72,0.6),0_40px_80px_rgba(0,0,0,0.5)] flex flex-col"
+            className="relative w-full max-w-5xl max-h-[95dvh] sm:max-h-[90vh] bg-white/10 backdrop-blur-[40px] border-[3px] border-white/50 rounded-2xl p-3 md:p-5 shadow-[inset_10px_10px_20px_rgba(255,255,255,1),inset_-12px_-12px_30px_rgba(35,58,119,0.5),0_40px_80px_rgba(0,0,0,0.6)] flex flex-col"
             dir="rtl"
             style={{ transformStyle: "preserve-3d", perspective: 1200 }}
           >
             {/* Liquid reflection highlight */}
-            <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-white/70 via-transparent to-transparent pointer-events-none mix-blend-overlay opacity-90 z-0" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/70 via-transparent to-transparent pointer-events-none mix-blend-overlay opacity-90 z-0" />
 
-            {/* Swirling animation inside modal glass border */}
-            <div className="absolute inset-0 rounded-[3rem] overflow-hidden pointer-events-none opacity-40 mix-blend-overlay z-0">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(224,247,244,0.1)_0%,rgba(128,206,195,0.8)_25%,rgba(29,118,113,0.9)_50%,rgba(128,206,195,0.8)_75%,rgba(224,247,244,0.1)_100%)] animate-[spin_10s_linear_infinite] blur-[30px]" />
+            {/* Swirling animation inside modal glass border using brand aurora colors */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none opacity-80 mix-blend-overlay z-0">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,239,208,1)_0%,rgba(255,239,208,1)_45%,rgba(249,115,22,0.9)_55%,rgba(28,129,172,0.9)_65%,rgba(6,32,165,0.9)_75%,rgba(35,58,119,0.9)_90%,rgba(255,239,208,1)_100%)] animate-[spin_12s_linear_infinite] blur-[40px]" />
             </div>
 
             {/* Close Button */}
@@ -77,7 +77,7 @@ export default function MediaModal({ isOpen, item, onClose }: MediaModalProps) {
             </button>
 
             {/* Inner Content Wrapper */}
-            <div className="relative flex-1 w-full h-full rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden bg-white/50 shadow-[0_10px_40px_rgba(0,0,0,0.4)] flex flex-col md:flex-row z-10 border-[3px] border-white/80">
+            <div className="relative flex-1 w-full h-full rounded-xl overflow-hidden bg-white/50 shadow-[0_10px_40px_rgba(0,0,0,0.4)] flex flex-col md:flex-row z-10 border-[3px] border-white/80">
               
               {/* Media Section */}
               <div className="relative w-full md:w-[55%] lg:w-[60%] flex-shrink-0 min-h-[35dvh] max-h-[50dvh] md:max-h-none flex items-center justify-center bg-black/10">

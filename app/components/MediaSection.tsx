@@ -251,19 +251,19 @@ function FloatingCard({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={() => onClick(item)}
-        className="group relative w-[70vw] sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] aspect-[3/4] rounded-[3rem] overflow-hidden p-4 md:p-5 bg-gradient-to-br from-[#e0f7f4]/50 via-[#80cec3]/40 to-[#1D7671]/60 backdrop-blur-2xl border-[2px] border-white/70 shadow-[inset_6px_6px_16px_rgba(255,255,255,0.9),inset_-8px_-8px_20px_rgba(17,75,72,0.8),0_20px_50px_rgba(0,0,0,0.25)] hover:shadow-[inset_8px_8px_20px_rgba(255,255,255,1),inset_-10px_-10px_25px_rgba(17,75,72,0.9),0_30px_60px_rgba(0,0,0,0.35)] transition-all duration-500 cursor-pointer outline-none"
+        className="group relative w-[70vw] sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] aspect-[3/4] rounded-[1.5rem] overflow-hidden p-4 md:p-5 bg-white/10 backdrop-blur-[40px] border-[3px] border-white/50 shadow-[inset_10px_10px_20px_rgba(255,255,255,1),inset_-12px_-12px_30px_rgba(35,58,119,0.5),0_30px_60px_rgba(0,0,0,0.4)] hover:shadow-[inset_14px_14px_28px_rgba(255,255,255,1),inset_-16px_-16px_40px_rgba(35,58,119,0.7),0_40px_80px_rgba(0,0,0,0.55)] transition-all duration-500 cursor-pointer outline-none"
         style={{ willChange: "transform", transformStyle: "preserve-3d" }}
       >
-        {/* Animated swirling liquid colors inside the glass border */}
-        <div className="absolute inset-0 rounded-[3rem] overflow-hidden z-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-overlay">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(224,247,244,0.1)_0%,rgba(128,206,195,0.8)_25%,rgba(29,118,113,0.9)_50%,rgba(128,206,195,0.8)_75%,rgba(224,247,244,0.1)_100%)] animate-[spin_8s_linear_infinite] blur-[20px]" />
+        {/* Animated swirling aurora brand colors inside the glass border */}
+        <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden z-0 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700 mix-blend-overlay">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,239,208,1)_0%,rgba(255,239,208,1)_45%,rgba(249,115,22,0.9)_55%,rgba(28,129,172,0.9)_65%,rgba(6,32,165,0.9)_75%,rgba(35,58,119,0.9)_90%,rgba(255,239,208,1)_100%)] animate-[spin_10s_linear_infinite] blur-[40px]" />
         </div>
 
         {/* Liquid reflection highlight for 3D glass effect */}
-        <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none mix-blend-overlay opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+        <div className="absolute inset-0 rounded-[1.5rem] bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none mix-blend-overlay opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-0" />
         
         {/* Inner Media Container */}
-        <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-black/20 z-10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+        <div className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black/30 z-10 shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
           {item.type === "video" ? (
             <>
               <img
@@ -288,10 +288,10 @@ function FloatingCard({
           )}
 
           {/* Deep Recess Overlay for depth */}
-          <div className="absolute inset-0 rounded-[2rem] shadow-[inset_0_8px_20px_rgba(0,0,0,0.5),inset_0_1px_3px_rgba(0,0,0,0.6)] pointer-events-none z-20 transition-opacity duration-500 group-hover:opacity-80" />
+          <div className="absolute inset-0 rounded-[1rem] shadow-[inset_0_12px_30px_rgba(0,0,0,0.7),inset_0_2px_6px_rgba(0,0,0,0.8)] pointer-events-none z-20 transition-opacity duration-500 group-hover:opacity-80" />
 
           {/* Bottom gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#114b48]/90 via-[#1D7671]/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#233A77]/90 via-[#0620a5]/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20" />
 
           {/* Hover text */}
           <motion.div
