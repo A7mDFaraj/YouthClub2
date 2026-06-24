@@ -44,39 +44,44 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative Borders */}
-      <div className="absolute top-[52px] sm:top-[64px] lg:top-[72px] left-0 right-0 flex w-full justify-between pointer-events-none z-0 opacity-90 md:opacity-100">
-        <div className="flex">
-          <BrandTile src="/svg/art-01-tl.svg" />
-          <BrandTile src="/svg/art-01-tr.svg" />
-          <BrandTile src="/svg/art-01-bl.svg" />
-        </div>
-        <div className="flex hidden md:flex">
-          <BrandTile src="/svg/art-02-br.svg" />
-          <BrandTile src="/svg/art-02-bl.svg" />
-        </div>
-      </div>
-
-      <div className="absolute top-[100px] sm:top-[128px] lg:top-[152px] left-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
-        <BrandTile src="/svg/art-02-tl.svg" />
-        <BrandTile src="/svg/art-01-br.svg" />
-      </div>
-
-      <div className="absolute top-[100px] sm:top-[128px] lg:top-[152px] right-0 flex flex-col pointer-events-none z-0 opacity-90 md:opacity-100">
-        <BrandTile src="/svg/art-03-bl.svg" />
-        <BrandTile src="/svg/art-01-bl.svg" />
-      </div>
-
-      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-0 flex flex-col pointer-events-none z-0 opacity-40 sm:opacity-90 md:opacity-100">
-        {/* Sun is hidden for asymmetrical effect */}
-        {/* <BrandTile src="/svg/art-02-tl.svg" /> */}
-        <BrandTile src="/svg/art-03-tl.svg" />
-      </div>
-
-      <div className="absolute bottom-12 sm:bottom-16 lg:bottom-20 right-0 flex flex-col pointer-events-none z-0 opacity-40 sm:opacity-90 md:opacity-100">
+      {/* Minimal Professional Decorative Borders */}
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute top-[52px] sm:top-[64px] lg:top-[72px] left-0 flex pointer-events-none z-0 opacity-70 md:opacity-80 hover:opacity-100 transition-opacity"
+      >
         <BrandTile src="/svg/art-01-tl.svg" />
+        <BrandTile src="/svg/art-01-tr.svg" className="hidden sm:flex" />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute top-[52px] sm:top-[64px] lg:top-[72px] right-0 flex pointer-events-none z-0 opacity-70 md:opacity-80 hover:opacity-100 transition-opacity"
+      >
+        <BrandTile src="/svg/art-02-br.svg" className="hidden sm:flex" />
+        <BrandTile src="/svg/art-02-bl.svg" />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, x: -20, y: 20 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 1, delay: 0.7 }}
+        className="absolute bottom-16 sm:bottom-20 lg:bottom-24 left-0 flex pointer-events-none z-0 opacity-60 md:opacity-70 hover:opacity-100 transition-opacity"
+      >
+        <BrandTile src="/svg/art-03-tl.svg" />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, x: 20, y: 20 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 1, delay: 0.7 }}
+        className="absolute bottom-16 sm:bottom-20 lg:bottom-24 right-0 flex pointer-events-none z-0 opacity-60 md:opacity-70 hover:opacity-100 transition-opacity"
+      >
         <BrandTile src="/svg/art-03-tl-yellow.svg" />
-      </div>
+      </motion.div>
 
       {/* Main Content */}
       <div className="relative z-10 w-full flex-1 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:justify-between gap-8 lg:gap-4 px-6 py-4 lg:py-0 mt-8 lg:mt-0">
@@ -125,7 +130,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.2 }}
           >
-            وجهتك الأولى للإبداع، الابتكار،<br/>واكتشاف الذات في بيئة شبابية متكاملة
+            أكثر من 210 نادي شبابي في مكان واحد
           </motion.p>
           
           {/* Buttons perfectly centered with their own entrance animation */}
