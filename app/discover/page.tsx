@@ -4,7 +4,7 @@ import { motion, Variants } from "framer-motion";
 import { 
   Users, Calendar, MapPin, Smartphone, ChevronRight, 
   ArrowUpLeft, Share2, Mail, Map, FileText, Clock, Globe,
-  Building, Copy, Check
+  Building, Copy, Check, Tag
 } from "lucide-react";
 import Link from "next/link";
 import SiteBackground from "../components/SiteBackground";
@@ -34,6 +34,7 @@ export default function ClubDetailsPage() {
     associationLogo: "/Logo.svg",
     associationLicense: "5594", 
     clubName: "نادي لبنات الصيفي",
+    clubCategory: "مهاري",
     clubLogo: "/club_logo.png",
     clubDescription: "برنامج صيفي متكامل يهدف إلى تمكين الفتيات وتطوير مهاراتهن القيادية والشخصية من خلال ورش عمل تفاعلية، ومشاريع إبداعية، وأنشطة ترفيهية تصنع قادة المستقبل.",
     targetGender: "إناث", 
@@ -167,11 +168,14 @@ export default function ClubDetailsPage() {
             </div>
 
             {/* Club Details */}
-            <div className="flex-1 text-center md:text-right">
+            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-right">
+              <span className="inline-block bg-[#1D7671]/10 text-[#1D7671] border border-[#1D7671]/20 px-3 py-1 rounded-md text-sm font-bold mb-3 shadow-sm">
+                تصنيف النادي: {clubData.clubCategory}
+              </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1D7671] leading-[1.3] mb-4 tracking-tight">
                 {clubData.clubName}
               </h1>
-              <p className="text-base md:text-lg text-[#1D7671]/80 leading-relaxed font-medium max-w-3xl mx-auto md:mx-0">
+              <p className="text-base md:text-lg text-[#1D7671]/80 leading-relaxed font-medium max-w-3xl mx-auto md:mx-0 mb-6">
                 {clubData.clubDescription}
               </p>
             </div>
