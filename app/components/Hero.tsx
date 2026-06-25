@@ -1,11 +1,25 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import AnimatedVoidOverlay from "./AnimatedVoidOverlay";
 import ParticlesLayer from "./ParticlesLayer";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  // Adjust this value to the exact second where the video should loop back to
+  // (e.g., skipping the beginning entrance animation)
+  const LOOP_START_TIME = 4; // seconds
+
+  const handleVideoEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = LOOP_START_TIME;
+      videoRef.current.play();
+    }
+  };
+
   return (
     <section 
       className="relative w-full min-h-[100dvh] bg-[#0A1A2F] flex flex-col overflow-hidden font-sans" 
@@ -18,13 +32,16 @@ export default function Hero() {
         transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
         className="absolute inset-0 z-0"
       >
-        <Image
-          src="/background.png"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnded}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/second_video_of_the_globe_m.mp4" type="video/mp4" />
+        </video>
         <AnimatedVoidOverlay />
       </motion.div>
 
