@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useRef } from "react";
 
 const BrandTile = ({ src, className = "" }: { src: string, className?: string }) => (
   <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center shrink-0 opacity-10 md:opacity-20 ${className}`}>
@@ -41,18 +42,71 @@ const PartnerPlaceholder = ({ label, src, alt }: { label?: string, src?: string,
   </div>
 );
 
-const SponsorPlaceholder = ({ label }: { label: string }) => (
-  <div className="w-[200px] h-[120px] mx-4 rounded-[1.5rem] bg-[#004a75]/5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.05)] border border-[#004a75]/10 flex items-center justify-center hover:shadow-[0_8px_30px_rgba(131,230,214,0.3)] transition-all duration-300 group hover:border-[#004a75]/20 hover:bg-[#004a75]/10 shrink-0">
-    <span className="text-[#004a75]/70 text-base font-bold group-hover:text-[#004a75] transition-colors duration-300">{label}</span>
+const SponsorPlaceholder = ({ src, label }: { src: string; label?: string }) => (
+  <div className="relative w-[200px] h-[120px] p-1 mx-4 rounded-[1.5rem] bg-[#004a75]/5 shadow-[0_8px_30px_rgba(0,0,0,0.05)] border border-[#004a75]/10 flex items-center justify-center transition-all duration-400 ease-out group/item hover:scale-[1.35] active:scale-110 hover:z-50 hover:shadow-[0_30px_60px_rgba(0,104,161,0.2)] hover:bg-white hover:border-[#004a75]/30 shrink-0 transform-gpu cursor-pointer">
+    <img 
+      src={encodeURI(src)} 
+      alt={label || "Sponsor"} 
+      className="w-full h-full object-contain scale-[1.15] transition-transform duration-400 ease-out group-hover/item:scale-[1.25] transform-gpu drop-shadow-sm group-hover/item:drop-shadow-xl" 
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 );
+
+const MarqueeRow = ({ children, reverse }: { children: React.ReactNode, reverse?: boolean }) => {
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleInteract = () => {
+    setIsPaused(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 1200); 
+  };
+
+  return (
+    <div 
+      className={`flex w-max will-change-transform ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}
+      style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+      onMouseEnter={handleInteract}
+      onTouchStart={handleInteract}
+      onMouseMove={handleInteract}
+      onTouchMove={handleInteract}
+    >
+      {children}
+    </div>
+  );
+};
 
 
 
 export default function PartnersSponsors() {
-  // Increase length to ensure seamless infinite loop on wide screens
-  const sponsorsRow1 = Array.from({ length: 20 });
-  const sponsorsRow2 = Array.from({ length: 20 });
+  const sponsorImages = [
+    "/sponsers/شعارات الجهات المانحة-01.svg",
+    "/sponsers/شعارات الجهات المانحة-02.svg",
+    "/sponsers/شعارات الجهات المانحة-03.svg",
+    "/sponsers/شعارات الجهات المانحة-04.svg",
+    "/sponsers/شعارات الجهات المانحة-05.svg",
+    "/sponsers/شعارات الجهات المانحة-06.svg",
+    "/sponsers/شعارات الجهات المانحة-07.svg",
+    "/sponsers/شعارات الجهات المانحة-08.svg",
+    "/sponsers/شعارات الجهات المانحة-09.svg",
+    "/sponsers/شعارات الجهات المانحة-10.svg",
+    "/sponsers/شعارات الجهات المانحة-11.svg",
+    "/sponsers/شعارات الجهات المانحة-12.svg",
+    "/sponsers/شعارات الجهات المانحة-13.svg",
+    "/sponsers/شعارات الجهات المانحة-14.svg",
+    "/sponsers/شعارات الجهات المانحة-15.svg",
+    "/sponsers/شعارات الجهات المانحة-16.svg",
+    "/sponsers/شعارات الجهات المانحة-17.svg",
+  ];
+
+  // We duplicate the array to ensure seamless infinite scrolling since there are only 17 sponsors.
+  const allSponsors = [...sponsorImages, ...sponsorImages];
+  const sponsorsRow1 = allSponsors.slice(0, 17);
+  const sponsorsRow2 = allSponsors.slice(17);
 
   return (
     <section className="relative w-full flex flex-col items-center justify-center overflow-hidden font-sans py-24 lg:py-32" dir="rtl">
@@ -117,34 +171,26 @@ export default function PartnersSponsors() {
       <div className="w-full relative z-10 flex flex-col gap-8 bg-[#0068a1]/5 backdrop-blur-xl py-16 border-y border-[#004a75]/10 shadow-sm">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#004a75]/5 via-transparent to-transparent pointer-events-none"></div>
         
-        <div className="w-full overflow-hidden flex flex-col gap-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" dir="ltr">
+        <div className="w-full overflow-hidden flex flex-col gap-10 py-12 -my-12 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" dir="ltr">
           {/* Row 1 - Right to Left */}
-          <motion.div 
-            className="flex w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 120, repeat: Infinity }}
-          >
+          <MarqueeRow>
             <div className="flex">
-              {sponsorsRow1.map((_, i) => <SponsorPlaceholder key={`r1a-${i}`} label={`راعي ${i + 1}`} />)}
+              {sponsorsRow1.map((src, i) => <SponsorPlaceholder key={`r1a-${i}`} src={src} label={`راعي ${i + 1}`} />)}
             </div>
             <div className="flex">
-              {sponsorsRow1.map((_, i) => <SponsorPlaceholder key={`r1b-${i}`} label={`راعي ${i + 1}`} />)}
+              {sponsorsRow1.map((src, i) => <SponsorPlaceholder key={`r1b-${i}`} src={src} label={`راعي ${i + 1}`} />)}
             </div>
-          </motion.div>
+          </MarqueeRow>
 
           {/* Row 2 - Left to Right */}
-          <motion.div 
-            className="flex w-max"
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ ease: "linear", duration: 140, repeat: Infinity }}
-          >
+          <MarqueeRow reverse>
             <div className="flex">
-              {sponsorsRow2.map((_, i) => <SponsorPlaceholder key={`r2a-${i}`} label={`راعي ${i + 10}`} />)}
+              {sponsorsRow2.map((src, i) => <SponsorPlaceholder key={`r2a-${i}`} src={src} label={`راعي ${i + 10}`} />)}
             </div>
             <div className="flex">
-              {sponsorsRow2.map((_, i) => <SponsorPlaceholder key={`r2b-${i}`} label={`راعي ${i + 10}`} />)}
+              {sponsorsRow2.map((src, i) => <SponsorPlaceholder key={`r2b-${i}`} src={src} label={`راعي ${i + 10}`} />)}
             </div>
-          </motion.div>
+          </MarqueeRow>
         </div>
       </div>
 

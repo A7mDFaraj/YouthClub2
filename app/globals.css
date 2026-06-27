@@ -11,6 +11,18 @@
   --font-sans: var(--font-thmanyahsans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-thmanyah: var(--font-thmanyahsans), ui-sans-serif, system-ui, sans-serif;
+  
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 70s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
