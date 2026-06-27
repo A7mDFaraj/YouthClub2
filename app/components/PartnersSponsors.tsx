@@ -167,6 +167,18 @@ export default function PartnersSponsors() {
         </div>
       </div>
 
+      {/* Sponsors Title */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 text-center mb-10"
+      >
+        <h3 className="text-[#004a75] text-2xl sm:text-3xl font-bold mb-4 drop-shadow-sm">الجهات المانحة</h3>
+        <div className="w-16 h-1 bg-gradient-to-r from-[#ff9f9d] to-[#fd5c3d] mx-auto rounded-full shadow-sm"></div>
+      </motion.div>
+
       {/* Sponsors Marquee - Full Width */}
       <div className="w-full relative z-10 flex flex-col gap-8 bg-[#0068a1]/5 backdrop-blur-xl py-16 border-y border-[#004a75]/10 shadow-sm">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#004a75]/5 via-transparent to-transparent pointer-events-none"></div>
