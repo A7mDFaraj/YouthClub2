@@ -50,3 +50,13 @@ skills-lock.json
 .superdesign/init/pages.md
 .superdesign/init/routes.md
 .superdesign/init/theme.md
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example
